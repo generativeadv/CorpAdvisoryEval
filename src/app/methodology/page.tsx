@@ -39,19 +39,8 @@ export default function MethodologyPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           {
-            href: "/methodology/maturity",
-            num: "1",
-            title: "AI Maturity Model",
-            question: "Where is this firm?",
-            summary:
-              "Five stages from Dormant to Leading. The headline classification.",
-            color: "text-blue-600",
-            border: "border-blue-500",
-            icon: BarChart3,
-          },
-          {
             href: "/methodology/scorecard",
-            num: "2",
+            num: "1",
             title: "Dimension Scorecard",
             question: "How do they compare?",
             summary:
@@ -59,6 +48,17 @@ export default function MethodologyPage() {
             color: "text-purple-600",
             border: "border-purple-500",
             icon: Target,
+          },
+          {
+            href: "/methodology/maturity",
+            num: "2",
+            title: "AI Maturity Model",
+            question: "Where is this firm?",
+            summary:
+              "Five stages from Dormant to Leading. The headline classification.",
+            color: "text-blue-600",
+            border: "border-blue-500",
+            icon: BarChart3,
           },
           {
             href: "/methodology/confidence",
@@ -109,49 +109,62 @@ export default function MethodologyPage() {
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">How It All Fits Together</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          The Maturity Model gives each firm a headline stage. The Scorecard
-          breaks that down across ten capability dimensions with a weighted
-          composite. The Confidence Index tells you how much to trust the
-          scores. Cross-firm, this produces a summary matrix, dimension
-          heatmap, key findings narrative, and archetype classification:
+          The Dimension Scorecard breaks each firm&rsquo;s AI posture across ten
+          capability areas with a weighted composite. The Maturity Model
+          distills that into a single headline stage. The Confidence Index
+          tells you how much to trust the scores. Cross-firm, this produces
+          a summary matrix, dimension heatmap, key findings narrative, and
+          archetype classification.
         </p>
-        <div className="flex flex-wrap gap-2">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
           {(
             [
               {
                 key: "technology-builder" as Archetype,
                 icon: Cpu,
-                color: "bg-blue-50 border-blue-200 text-blue-700",
+                color: "bg-blue-50 border-blue-200",
+                desc: "Firms investing in proprietary AI platforms and dedicated engineering teams. Score high on technology, talent, and internal adoption. Their competitive advantage is built, not bought or narrated.",
               },
               {
                 key: "advisory-positioner" as Archetype,
                 icon: Megaphone,
-                color: "bg-purple-50 border-purple-200 text-purple-700",
+                color: "bg-purple-50 border-purple-200",
+                desc: "Firms with strong AI messaging, thought leadership, and market positioning but lighter on proprietary technology and engineering depth. They lead the conversation but may lag on delivery infrastructure.",
               },
               {
                 key: "acquirer" as Archetype,
                 icon: ShoppingCart,
-                color: "bg-amber-50 border-amber-200 text-amber-700",
+                color: "bg-amber-50 border-amber-200",
+                desc: "Firms assembling AI capabilities primarily through M&A, partnerships, and strategic investments rather than organic development. Speed to capability comes at the cost of integration complexity.",
               },
               {
                 key: "dormant-lagging" as Archetype,
                 icon: AlertTriangle,
-                color: "bg-gray-50 border-gray-200 text-gray-600",
+                color: "bg-gray-50 border-gray-200",
+                desc: "Minimal visible AI activity across most dimensions. These firms may be active behind closed doors, but the public evidence base is too thin to classify higher. The confidence grade matters most here.",
               },
             ] as const
           ).map((a) => {
             const Icon = a.icon;
             return (
-              <span
+              <div
                 key={a.key}
                 className={cn(
-                  "inline-flex items-center gap-1.5 border rounded-full px-3 py-1.5 text-xs font-medium",
+                  "border rounded-xl p-4",
                   a.color
                 )}
               >
-                <Icon size={12} />
-                {ARCHETYPE_LABELS[a.key]}
-              </span>
+                <div className="flex items-center gap-2 mb-2">
+                  <Icon size={16} className="shrink-0" />
+                  <span className="font-semibold text-sm">
+                    {ARCHETYPE_LABELS[a.key]}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {a.desc}
+                </p>
+              </div>
             );
           })}
         </div>

@@ -30,7 +30,7 @@ export default function MaturityPage() {
       </Link>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-1">Framework 1</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-1">Framework 2</p>
         <h1 className="text-2xl font-bold">AI Maturity Model</h1>
         <p className="text-muted-foreground mt-2">
           Five stages from Dormant to Leading. Classification is conservative: a firm is placed at the <strong>lowest stage at which all criteria are met</strong>.

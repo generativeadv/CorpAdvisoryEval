@@ -29,7 +29,7 @@ export default function ScorecardPage() {
       </Link>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-purple-600 mb-1">Framework 2</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-purple-600 mb-1">Framework 1</p>
         <h1 className="text-2xl font-bold">Dimension Scorecard</h1>
         <p className="text-muted-foreground mt-2">
           Ten dimensions scored 1&ndash;5. Dimensions marked <span className="inline-flex items-center bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full text-[10px] font-semibold">1.5x</span> carry higher weight.
