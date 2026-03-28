@@ -128,3 +128,28 @@
     @apply font-sans;
   }
 }
+
+@media print {
+  body {
+    font-size: 11pt;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:break-after-page {
+    break-after: page;
+  }
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+}
+
+.prose table {
+  font-size: 0.8rem;
+}
+
+.prose table th,
+.prose table td {
+  padding: 0.25rem 0.5rem;
+}
