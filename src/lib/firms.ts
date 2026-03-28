@@ -22,10 +22,6 @@ export const FIRMS: FirmMeta[] = [
   { slug: "weber-shandwick", name: "Weber Shandwick", shortName: "Weber Shandwick", group: 2 },
   { slug: "burson", name: "Burson", shortName: "Burson", group: 2 },
   { slug: "fleishmanhillard", name: "FleishmanHillard", shortName: "FleishmanHillard", group: 2 },
-  { slug: "mckinsey", name: "McKinsey & Company", shortName: "McKinsey", group: 2 },
-  { slug: "bcg", name: "Boston Consulting Group", shortName: "BCG", group: 2 },
-  { slug: "bain", name: "Bain & Company", shortName: "Bain", group: 2 },
-  { slug: "deloitte", name: "Deloitte", shortName: "Deloitte", group: 2 },
   { slug: "accenture-song", name: "Accenture Song", shortName: "Accenture Song", group: 2 },
 
   // Group 3
