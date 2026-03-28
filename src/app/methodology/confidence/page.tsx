@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const GRADES: { grade: ConfidenceGrade; definition: string; color: string }[] = [
   { grade: "A", definition: "Multiple independent primary sources confirm key claims. Official announcements, verifiable job postings, named leaders, third-party coverage all align.", color: "border-green-400 bg-green-50" },
-  { grade: "B", definition: "Primary sources confirm core claims but some dimensions rely on inference. Key gaps exist but the overall picture is supported.", color: "border-blue-400 bg-blue-50" },
+  { grade: "B", definition: "Primary sources confirm core claims but some dimensions rely on inference. Key gaps exist but the overall picture is supported.", color: "border-emerald-400 bg-emerald-50" },
   { grade: "C", definition: "Evidence is thin, relies heavily on marketing language, or comes predominantly from self-reported sources. Key claims are plausible but unverified.", color: "border-yellow-400 bg-yellow-50" },
   { grade: "D", definition: "Very little public information available. Rating reflects information scarcity, not necessarily firm inactivity.", color: "border-red-400 bg-red-50" },
 ];

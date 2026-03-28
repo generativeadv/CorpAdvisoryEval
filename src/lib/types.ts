@@ -27,7 +27,7 @@ export const CONFIDENCE_LABELS: Record<ConfidenceGrade, string> = {
 
 export const CONFIDENCE_COLORS: Record<ConfidenceGrade, string> = {
   A: "bg-green-100 text-green-800 border-green-200",
-  B: "bg-blue-100 text-blue-800 border-blue-200",
+  B: "bg-emerald-50 text-emerald-700 border-emerald-200",
   C: "bg-yellow-100 text-yellow-800 border-yellow-200",
   D: "bg-red-100 text-red-800 border-red-200",
 };
