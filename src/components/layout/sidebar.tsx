@@ -8,6 +8,7 @@ import {
   BarChart3,
   FileText,
   MessageSquare,
+  BookOpen,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { href: "/compare", label: "Compare", icon: BarChart3 },
   { href: "/board", label: "Board Outputs", icon: FileText },
   { href: "/chat", label: "AI Chat", icon: MessageSquare },
+  { href: "/methodology", label: "Methodology", icon: BookOpen },
 ];
 
 export function Sidebar() {

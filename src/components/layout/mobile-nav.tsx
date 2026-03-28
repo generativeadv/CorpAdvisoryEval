@@ -8,6 +8,7 @@ import {
   BarChart3,
   FileText,
   MessageSquare,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { href: "/compare", label: "Compare", icon: BarChart3 },
   { href: "/board", label: "Board", icon: FileText },
   { href: "/chat", label: "Chat", icon: MessageSquare },
+  { href: "/methodology", label: "Method", icon: BookOpen },
 ];
 
 export function MobileNav() {
