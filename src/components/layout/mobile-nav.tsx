@@ -14,13 +14,13 @@ import {
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/", label: "Method", icon: BookOpen },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/firms", label: "Firms", icon: Building2 },
   { href: "/compare", label: "Compare", icon: BarChart3 },
   { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board", icon: FileText },
   { href: "/chat", label: "Chat", icon: MessageSquare },
-  { href: "/methodology", label: "Method", icon: BookOpen },
 ];
 
 export function MobileNav() {
