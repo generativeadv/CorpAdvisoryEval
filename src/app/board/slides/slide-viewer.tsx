@@ -4,18 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import {
   MATURITY_LABELS,
   ARCHETYPE_LABELS,
-  DIMENSION_NAMES,
-  getDimensionScores,
   type FirmWithEvaluation,
   type MaturityStage,
-  type ConfidenceGrade,
   type Archetype,
 } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Link from "next/link";
-
-const CONFIDENCE_ORDER: Record<string, number> = { A: 4, B: 3, C: 2, D: 1 };
 
 export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,28 +34,27 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
     return () => window.removeEventListener("keydown", handler);
   }, [next, prev]);
 
-  const sorted = [...firms].sort(
+  // Exclude FTI Total from core analysis
+  const coreFirms = firms.filter((f) => f.slug !== "fti-total");
+
+  const sorted = [...coreFirms].sort(
     (a, b) =>
       (b.evaluation?.compositeScoreWeighted ?? 0) -
       (a.evaluation?.compositeScoreWeighted ?? 0)
   );
 
-  const dimAverages = DIMENSION_NAMES.map((name, i) => {
-    const avg =
-      firms.length > 0
-        ? firms.reduce((sum, f) => sum + getDimensionScores(f.evaluation!)[i], 0) /
-          firms.length
-        : 0;
-    return { name, avg };
-  });
+  const scaling = sorted.filter(
+    (f) => (f.evaluation?.maturityStage ?? 0) >= 4
+  );
+  const formalizing = sorted.filter(
+    (f) => f.evaluation?.maturityStage === 3
+  );
+  const early = sorted.filter(
+    (f) => (f.evaluation?.maturityStage ?? 0) <= 2
+  );
 
-  const MATURITY_COLORS_SLIDE: Record<number, string> = {
-    1: "#ef4444",
-    2: "#f97316",
-    3: "#eab308",
-    4: "#3b82f6",
-    5: "#22c55e",
-  };
+  const group1 = sorted.filter((f) => f.group === 1);
+  const fgs = coreFirms.find((f) => f.slug === "fgs-global");
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col">
@@ -70,7 +64,11 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
           <X size={20} />
         </Link>
         <div className="flex items-center gap-4">
-          <button onClick={prev} disabled={currentSlide === 0} className="disabled:opacity-30">
+          <button
+            onClick={prev}
+            disabled={currentSlide === 0}
+            className="disabled:opacity-30"
+          >
             <ChevronLeft size={20} />
           </button>
           <span className="text-sm">
@@ -84,196 +82,277 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
             <ChevronRight size={20} />
           </button>
         </div>
-        <span className="text-xs text-white/50">Arrow keys to navigate</span>
+        <span className="text-xs text-white/50">
+          Arrow keys to navigate
+        </span>
       </div>
 
       {/* Slide Container */}
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-[1200px] aspect-video bg-white rounded-lg shadow-2xl overflow-hidden">
-          {/* Slide 1: Title + 2x2 Matrix */}
+          {/* ====== SLIDE 1: Situation ====== */}
           {currentSlide === 0 && (
-            <div className="h-full p-8 flex flex-col">
-              <h1 className="text-3xl font-bold text-gray-900">
-                AI Strategy Competitive Assessment
-              </h1>
-              <p className="text-lg text-gray-500 mt-1">
-                {firms.length} Advisory & Consulting Firms
-              </p>
-              <div className="flex-1 mt-6 relative">
-                {/* 2x2 Grid */}
-                <div className="absolute inset-0">
-                  <div className="w-full h-full border-l-2 border-b-2 border-gray-200 relative">
-                    {/* Axis labels */}
-                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-gray-400">
-                      AI Maturity Stage &rarr;
-                    </span>
-                    <span className="absolute -left-6 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-gray-400">
-                      Evidence Confidence &rarr;
-                    </span>
-                    {/* Quadrant labels */}
-                    <span className="absolute top-2 left-2 text-[10px] text-gray-300 uppercase">
-                      Low Maturity / High Evidence
-                    </span>
-                    <span className="absolute top-2 right-2 text-[10px] text-gray-300 uppercase">
-                      High Maturity / High Evidence
-                    </span>
-                    <span className="absolute bottom-2 left-2 text-[10px] text-gray-300 uppercase">
-                      Low Maturity / Low Evidence
-                    </span>
-                    <span className="absolute bottom-2 right-2 text-[10px] text-gray-300 uppercase">
-                      High Maturity / Low Evidence
-                    </span>
-                    {/* Grid lines */}
-                    <div className="absolute top-1/2 left-0 right-0 border-t border-dashed border-gray-100" />
-                    <div className="absolute left-1/2 top-0 bottom-0 border-l border-dashed border-gray-100" />
+            <div className="h-full p-10 flex flex-col">
+              <div className="mb-6">
+                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
+                  AI Strategy Competitive Assessment
+                </p>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  The sector has moved past experimentation — but the gap
+                  between positioning and infrastructure is widening
+                </h1>
+              </div>
 
-                    {/* Plot firms */}
-                    {firms.map((firm) => {
-                      const stage = firm.evaluation?.maturityStage ?? 1;
-                      const conf =
-                        CONFIDENCE_ORDER[
-                          firm.evaluation?.confidenceGrade ?? "D"
-                        ];
-                      const x = ((stage - 0.5) / 5) * 100;
-                      const y = (1 - (conf - 0.5) / 4) * 100;
-                      return (
-                        <div
-                          key={firm.slug}
-                          className="absolute transform -translate-x-1/2 -translate-y-1/2"
-                          style={{ left: `${x}%`, top: `${y}%` }}
-                        >
-                          <div
-                            className="w-3 h-3 rounded-full border-2 border-white shadow"
-                            style={{
-                              backgroundColor:
-                                MATURITY_COLORS_SLIDE[stage] || "#999",
-                            }}
-                          />
-                          <span className="absolute top-3 left-1/2 -translate-x-1/2 text-[9px] text-gray-600 whitespace-nowrap font-medium">
-                            {firm.shortName}
-                          </span>
-                        </div>
-                      );
-                    })}
+              <div className="flex-1 grid grid-cols-3 gap-8">
+                {/* Column 1 */}
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 border-b border-gray-200 pb-2">
+                    Where the sector stands
+                  </p>
+                  <div className="space-y-3 text-sm text-gray-700">
+                    <p>
+                      Most firms have appointed AI leadership, launched
+                      practices, and begun deploying internal tools
+                    </p>
+                    <p>
+                      But fewer have made the engineering and commercial
+                      investments that translate positioning into verified
+                      capability
+                    </p>
+                    <p className="text-gray-500 text-xs">
+                      {scaling.length} firms at Scaling or Leading &middot;{" "}
+                      {formalizing.length} Formalizing &middot;{" "}
+                      {early.length} Early stage
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 2 */}
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 border-b border-gray-200 pb-2">
+                    The defining fault line
+                  </p>
+                  <div className="space-y-3 text-sm text-gray-700">
+                    <p>
+                      <strong>Proprietary technology + engineering talent</strong>{" "}
+                      separates leaders from positioners
+                    </p>
+                    <p>
+                      Firms with internal platforms, dedicated engineering
+                      teams, and AI acquisitions consistently outperform
+                      those leading with thought leadership alone
+                    </p>
+                    <p>
+                      Holding company networks (WPP, IPG) provide structural
+                      advantages in platform scale that independents must
+                      build on their own
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 3 */}
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 border-b border-gray-200 pb-2">
+                    FGS Global positioning
+                  </p>
+                  <div className="space-y-3 text-sm text-gray-700">
+                    {fgs && fgs.evaluation && (
+                      <>
+                        <p>
+                          <strong>
+                            Most complete AI posture among pure-play
+                            advisory firms
+                          </strong>
+                        </p>
+                        <p>
+                          AI Advisory practice + Fergus platform (1,500+
+                          users) + Memetica acquisition + FGS Labs
+                          engineering team
+                        </p>
+                        <p>
+                          Ranked #{group1.findIndex((f) => f.slug === "fgs-global") + 1} in
+                          Group 1 &middot; Stage{" "}
+                          {fgs.evaluation.maturityStage} (
+                          {MATURITY_LABELS[fgs.evaluation.maturityStage]})
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Slide 2: Heatmap */}
+          {/* ====== SLIDE 2: Competitive Landscape ====== */}
           {currentSlide === 1 && (
-            <div className="h-full p-6 flex flex-col">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Dimension Heatmap
-              </h2>
-              <p className="text-sm text-gray-500">
-                10 dimensions scored 1-5 across {firms.length} firms
-              </p>
-              <div className="flex-1 mt-4 overflow-auto">
-                <table className="w-full text-[10px]">
+            <div className="h-full p-10 flex flex-col">
+              <div className="mb-5">
+                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
+                  Competitive Landscape
+                </p>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  A clear leader tier is emerging, with most firms in a
+                  scaling-to-formalizing middle
+                </h2>
+              </div>
+
+              <div className="flex-1 overflow-auto">
+                <table className="w-full text-sm">
                   <thead>
-                    <tr>
-                      <th className="text-left p-1 min-w-[100px]">Firm</th>
-                      {DIMENSION_NAMES.map((name, i) => (
-                        <th key={i} className="p-0.5 text-center w-8">
-                          <span className="block truncate" title={name}>
-                            D{i + 1}
-                          </span>
-                        </th>
-                      ))}
-                      <th className="p-1 text-center">Tot</th>
+                    <tr className="border-b-2 border-gray-200 text-xs uppercase tracking-wider text-gray-400">
+                      <th className="text-left py-2 pr-4 w-12">Tier</th>
+                      <th className="text-left py-2 pr-4">Firms</th>
+                      <th className="text-left py-2 pr-4">Characterization</th>
+                      <th className="text-left py-2 w-24">Stage</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {sorted.map((firm) => {
-                      const scores = getDimensionScores(firm.evaluation!);
-                      return (
-                        <tr key={firm.slug}>
-                          <td className="p-1 font-medium whitespace-nowrap">
-                            {firm.shortName}
-                          </td>
-                          {scores.map((score, i) => (
-                            <td key={i} className="p-0.5">
-                              <div
-                                className={cn(
-                                  "w-6 h-5 rounded flex items-center justify-center text-[9px] font-bold mx-auto",
-                                  score >= 4
-                                    ? "bg-green-400 text-green-900"
-                                    : score >= 3
-                                      ? "bg-blue-300 text-blue-900"
-                                      : score >= 2
-                                        ? "bg-yellow-300 text-yellow-900"
-                                        : "bg-red-300 text-red-900"
-                                )}
-                              >
-                                {score}
-                              </div>
-                            </td>
-                          ))}
-                          <td className="p-1 text-center font-bold">
-                            {firm.evaluation!.compositeScoreWeighted.toFixed(0)}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                  <tbody className="text-gray-700">
+                    <tr className="border-b border-gray-100 align-top">
+                      <td className="py-3 pr-4 font-bold text-gray-900">
+                        Leaders
+                      </td>
+                      <td className="py-3 pr-4">
+                        {sorted
+                          .filter(
+                            (f) => (f.evaluation?.maturityStage ?? 0) >= 5
+                          )
+                          .map((f) => f.shortName)
+                          .join(", ") || "—"}
+                      </td>
+                      <td className="py-3 pr-4 text-xs text-gray-600">
+                        Deep proprietary tech, large engineering orgs,
+                        verifiable commercial AI revenue, published case
+                        studies
+                      </td>
+                      <td className="py-3 text-xs">Stage 5</td>
+                    </tr>
+                    <tr className="border-b border-gray-100 align-top">
+                      <td className="py-3 pr-4 font-bold text-gray-900">
+                        Scaling
+                      </td>
+                      <td className="py-3 pr-4">
+                        {sorted
+                          .filter(
+                            (f) => f.evaluation?.maturityStage === 4
+                          )
+                          .map((f) => f.shortName)
+                          .join(", ")}
+                      </td>
+                      <td className="py-3 pr-4 text-xs text-gray-600">
+                        Proprietary platforms in production, dedicated AI
+                        leadership, active client practices, organizational
+                        commitment beyond positioning
+                      </td>
+                      <td className="py-3 text-xs">Stage 4</td>
+                    </tr>
+                    <tr className="border-b border-gray-100 align-top">
+                      <td className="py-3 pr-4 font-bold text-gray-900">
+                        Formalizing
+                      </td>
+                      <td className="py-3 pr-4">
+                        {formalizing
+                          .map((f) => f.shortName)
+                          .join(", ")}
+                      </td>
+                      <td className="py-3 pr-4 text-xs text-gray-600">
+                        AI leadership appointed, internal pilots underway,
+                        thought leadership active — but thinner on
+                        proprietary tooling, engineering depth, or
+                        commercial proof points
+                      </td>
+                      <td className="py-3 text-xs">Stage 3</td>
+                    </tr>
+                    <tr className="align-top">
+                      <td className="py-3 pr-4 font-bold text-gray-900">
+                        Early
+                      </td>
+                      <td className="py-3 pr-4">
+                        {early.length > 0
+                          ? early.map((f) => f.shortName).join(", ")
+                          : "—"}
+                      </td>
+                      <td className="py-3 pr-4 text-xs text-gray-600">
+                        Limited public evidence of dedicated AI activity;
+                        may reflect early posture or limited disclosure
+                      </td>
+                      <td className="py-3 text-xs">Stage 1–2</td>
+                    </tr>
                   </tbody>
                 </table>
+
+                <p className="text-[10px] text-gray-400 mt-3 italic">
+                  FTI Consulting (Total Firm) excluded from peer rankings;
+                  included as contextual reference given enterprise-scale
+                  resources beyond strategic communications scope.
+                </p>
               </div>
             </div>
           )}
 
-          {/* Slide 3: Key Takeaways */}
+          {/* ====== SLIDE 3: Key Observations ====== */}
           {currentSlide === 2 && (
-            <div className="h-full p-8 flex flex-col justify-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">
-                Key Takeaways
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">
-                    1
-                  </span>
-                  <p className="text-lg text-gray-700">
-                    The advisory sector is still{" "}
-                    <strong>early-stage in AI adoption</strong>. Most firms are
-                    experimenting, not scaling.
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">
-                    2
-                  </span>
-                  <p className="text-lg text-gray-700">
-                    <strong>{sorted[0]?.shortName}</strong> leads the field with
-                    a weighted score of{" "}
-                    {sorted[0]?.evaluation?.compositeScoreWeighted.toFixed(1)}.
-                    The gap between leaders and laggards is significant.
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">
-                    3
-                  </span>
-                  <p className="text-lg text-gray-700">
-                    <strong>
-                      Proprietary technology and engineering talent
-                    </strong>{" "}
-                    are the strongest differentiators. Firms that invest in
-                    building outperform those that only position.
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">
-                    4
-                  </span>
-                  <p className="text-lg text-gray-700">
-                    Evidence quality varies. Scores should be weighted by{" "}
-                    <strong>confidence grade</strong>&mdash;several firms may
-                    appear stronger or weaker than reality due to information
-                    availability.
-                  </p>
-                </div>
+            <div className="h-full p-10 flex flex-col">
+              <div className="mb-5">
+                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
+                  Key Observations
+                </p>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Six things the Board should know
+                </h2>
+              </div>
+
+              <div className="flex-1 grid grid-cols-2 gap-x-10 gap-y-5">
+                {[
+                  {
+                    num: "1",
+                    headline: "Past experimentation, not yet mature",
+                    body: "Most firms are formalizing or scaling. Only one has reached Leading with measurable AI revenue and published case studies.",
+                  },
+                  {
+                    num: "2",
+                    headline:
+                      "Proprietary tech is the strongest differentiator",
+                    body: "Firms that build their own platforms and hire engineers outperform those relying on positioning and third-party tools.",
+                  },
+                  {
+                    num: "3",
+                    headline:
+                      "FGS has the most complete posture among advisory peers",
+                    body: "Named practice, proprietary platform, targeted acquisition, and dedicated engineering team — rare breadth for an advisory-scale firm.",
+                  },
+                  {
+                    num: "4",
+                    headline:
+                      "Group structure creates different competitive dynamics",
+                    body: "PR networks benefit from holding company tech investments. Independent advisory firms must build AI capability from their own resource base.",
+                  },
+                  {
+                    num: "5",
+                    headline:
+                      "Evidence confidence matters as much as the scores",
+                    body: "Where public evidence is thin, rankings are directional. The confidence grade flags information scarcity, not inactivity.",
+                  },
+                  {
+                    num: "6",
+                    headline:
+                      "The landscape is moving fast",
+                    body: "Multiple firms have made major AI moves in the past six months. Relative positions may shift materially within 2–3 quarters.",
+                  },
+                ].map((obs) => (
+                  <div key={obs.num} className="flex gap-3">
+                    <span className="text-2xl font-bold text-gray-300 leading-none mt-0.5">
+                      {obs.num}
+                    </span>
+                    <div>
+                      <p className="font-bold text-sm text-gray-900">
+                        {obs.headline}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-1 leading-relaxed">
+                        {obs.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
