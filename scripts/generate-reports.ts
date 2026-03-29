@@ -1,4 +1,5 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
 import OpenAI from "openai";
 import fs from "fs";
 import path from "path";

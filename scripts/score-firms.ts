@@ -1,4 +1,6 @@
-import "dotenv/config";
+import { config } from "dotenv";
+const envResult = config({ path: ".env.local" });
+
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
@@ -10,13 +12,15 @@ import { FIRMS } from "../src/lib/firms";
 import { buildScoringPrompt } from "./prompts/scoring";
 import { computeUnweightedScore, computeWeightedScore } from "../src/lib/types";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+const apiKey = envResult.parsed?.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+if (!apiKey) throw new Error("ANTHROPIC_API_KEY not found in .env.local");
+const anthropic = new Anthropic({ apiKey });
 const MODEL = "claude-opus-4-20250514";
 const REPORTS_DIR = path.join(process.cwd(), "content", "reports");
 
 const client = createClient({
-  url: process.env.TURSO_DATABASE_URL!,
-  authToken: process.env.TURSO_AUTH_TOKEN,
+  url: envResult.parsed?.TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL!,
+  authToken: envResult.parsed?.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
 });
 const db = drizzle(client, { schema });
 
