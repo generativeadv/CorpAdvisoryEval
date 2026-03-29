@@ -9,12 +9,31 @@ import {
   type Archetype,
 } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, FileDown } from "lucide-react";
 import Link from "next/link";
 
 export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [downloading, setDownloading] = useState(false);
   const totalSlides = 3;
+
+  const handleDownloadPptx = async () => {
+    setDownloading(true);
+    try {
+      const { generateSlidesPptx } = await import("@/lib/export-pptx");
+      const blob = await generateSlidesPptx(firms);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "AI-Strategy-Assessment-Slides.pptx";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const next = useCallback(() => {
     setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
@@ -82,9 +101,14 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
             <ChevronRight size={20} />
           </button>
         </div>
-        <span className="text-xs text-white/50">
-          Arrow keys to navigate
-        </span>
+        <button
+          onClick={handleDownloadPptx}
+          disabled={downloading}
+          className="flex items-center gap-1.5 text-xs text-white/70 hover:text-white disabled:opacity-50 transition-colors"
+        >
+          <FileDown size={14} />
+          {downloading ? "Generating..." : "Download .pptx"}
+        </button>
       </div>
 
       {/* Slide Container */}
