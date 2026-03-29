@@ -9,6 +9,7 @@ import {
   FileText,
   MessageSquare,
   BookOpen,
+  Clock,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/firms", label: "Firms", icon: Building2 },
   { href: "/compare", label: "Compare", icon: BarChart3 },
+  { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board Outputs", icon: FileText },
   { href: "/chat", label: "AI Chat", icon: MessageSquare },
   { href: "/methodology", label: "Methodology", icon: BookOpen },
