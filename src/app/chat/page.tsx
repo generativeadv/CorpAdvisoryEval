@@ -1,31 +1,22 @@
 "use client";
 
-import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
 import { Send, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
-function getMessageText(message: { parts?: Array<{ type: string; text?: string }> }): string {
-  if (!message.parts) return "";
-  return message.parts
-    .filter((p): p is { type: "text"; text: string } => p.type === "text" && typeof p.text === "string")
-    .map((p) => p.text)
-    .join("");
+interface Message {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
 }
 
 export default function ChatPage() {
-  const transport = useMemo(
-    () => new DefaultChatTransport({ api: "/api/chat" }),
-    []
-  );
-  const { messages, sendMessage, status } = useChat({ transport });
-
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const isLoading = status === "streaming" || status === "submitted";
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -33,11 +24,79 @@ export default function ChatPage() {
     }
   }, [messages]);
 
-  const handleSubmit = async (text: string) => {
-    if (!text.trim() || isLoading) return;
-    setInput("");
-    await sendMessage({ text });
-  };
+  const handleSubmit = useCallback(
+    async (text: string) => {
+      if (!text.trim() || isLoading) return;
+
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        role: "user",
+        content: text.trim(),
+      };
+
+      const newMessages = [...messages, userMessage];
+      setMessages(newMessages);
+      setInput("");
+      setIsLoading(true);
+
+      const assistantId = (Date.now() + 1).toString();
+      setMessages((prev) => [
+        ...prev,
+        { id: assistantId, role: "assistant", content: "" },
+      ]);
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: newMessages.map((m) => ({
+              role: m.role,
+              content: m.content,
+            })),
+          }),
+        });
+
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
+
+        const reader = res.body?.getReader();
+        const decoder = new TextDecoder();
+
+        if (!reader) throw new Error("No reader");
+
+        let accumulated = "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          accumulated += chunk;
+
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === assistantId ? { ...m, content: accumulated } : m
+            )
+          );
+        }
+      } catch (err) {
+        console.error("Chat error:", err);
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? {
+                  ...m,
+                  content:
+                    "Sorry, something went wrong. Please try again.",
+                }
+              : m
+          )
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [messages, isLoading]
+  );
 
   return (
     <div className="flex flex-col h-[calc(100vh-0px)] md:h-screen">
@@ -53,13 +112,13 @@ export default function ChatPage() {
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center">
             <p className="text-muted-foreground mb-6 max-w-md">
-              I have access to deep research reports and structured evaluations
-              for 22 advisory firms. Ask me anything.
+              I have access to deep research reports and structured
+              evaluations for 17 advisory firms. Ask me anything.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl">
               {[
                 "Which firms are leading in AI adoption and why?",
-                "Compare McKinsey and BCG on their AI strategies",
+                "Compare FGS Global and Edelman on their AI strategies",
                 "What are the biggest gaps in the advisory sector's AI capabilities?",
                 "Re-evaluate the firms with 2x weight on commercial momentum",
               ].map((suggestion) => (
@@ -75,46 +134,43 @@ export default function ChatPage() {
           </div>
         )}
 
-        {messages.map((message) => {
-          const text = getMessageText(message);
-          if (!text) return null;
-          return (
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={cn(
+              "flex",
+              message.role === "user" ? "justify-end" : "justify-start"
+            )}
+          >
             <div
-              key={message.id}
               className={cn(
-                "flex",
-                message.role === "user" ? "justify-end" : "justify-start"
+                "max-w-3xl rounded-lg px-4 py-3",
+                message.role === "user"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted"
               )}
             >
-              <div
-                className={cn(
-                  "max-w-3xl rounded-lg px-4 py-3",
-                  message.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted"
-                )}
-              >
-                {message.role === "assistant" ? (
-                  <div className="prose prose-sm max-w-none dark:prose-invert">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {text}
-                    </ReactMarkdown>
-                  </div>
-                ) : (
-                  <p className="text-sm">{text}</p>
-                )}
-              </div>
-            </div>
-          );
-        })}
-
-        {isLoading && messages[messages.length - 1]?.role === "user" && (
-          <div className="flex justify-start">
-            <div className="bg-muted rounded-lg px-4 py-3">
-              <Loader2 size={16} className="animate-spin" />
+              {message.role === "assistant" ? (
+                <div className="prose prose-sm max-w-none dark:prose-invert">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {message.content || " "}
+                  </ReactMarkdown>
+                </div>
+              ) : (
+                <p className="text-sm">{message.content}</p>
+              )}
             </div>
           </div>
-        )}
+        ))}
+
+        {isLoading &&
+          messages[messages.length - 1]?.content === "" && (
+            <div className="flex justify-start">
+              <div className="bg-muted rounded-lg px-4 py-3">
+                <Loader2 size={16} className="animate-spin" />
+              </div>
+            </div>
+          )}
       </div>
 
       <div className="border-t p-4 flex gap-3 items-end">
