@@ -23,7 +23,6 @@ const NAV_ITEMS = [
   { href: "/compare", label: "Compare", icon: BarChart3 },
   { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board Outputs", icon: FileText },
-  { href: "/chat", label: "AI Chat", icon: MessageSquare },
 ];
 
 export function Sidebar() {

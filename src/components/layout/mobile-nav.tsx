@@ -20,7 +20,6 @@ const NAV_ITEMS = [
   { href: "/compare", label: "Compare", icon: BarChart3 },
   { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board", icon: FileText },
-  { href: "/chat", label: "Chat", icon: MessageSquare },
 ];
 
 export function MobileNav() {
