@@ -2,10 +2,18 @@
   {
     "date": "2022-09-28",
     "type": "Action",
-    "description": "Launch of Penta Group brand – Hamilton Place Strategies and five other firms combine into one data-driven stakeholder solutions firm, with Matt McDonald as president.",
+    "description": "Launch of Penta Group brand - Hamilton Place Strategies and five other firms combine into one data-driven stakeholder solutions firm with Matt McDonald as president.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2022-Q3"
+  },
+  {
+    "date": "2022-11",
+    "type": "Acquisition",
+    "description": "Excellera Advisory Group is founded through a merger of leading Italian corporate affairs firms (Cattaneo Zanetto & Co., Community) with backing from Xenon Private Equity.",
+    "firm": "Excellera",
+    "firmSlug": "excellera",
+    "quarter": "2022-Q4"
   },
   {
     "date": "2022-Q4",
@@ -18,7 +26,7 @@
   {
     "date": "2023-01",
     "type": "Thought Leadership",
-    "description": "Teneo's Vision 2023 CEO & Investor Outlook Survey reports that 48% of CEOs have adopted AI and 58% plan further AI investment, noting AI as a strong alignment point between CEOs and investors.",
+    "description": "Vision 2023 – CEO & Investor Outlook Survey reports that 48% of CEOs have adopted AI and 58% plan further AI investment, noting AI as a strong alignment point between CEOs and investors.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2023-Q1"
@@ -26,9 +34,17 @@
   {
     "date": "2023-01-18",
     "type": "Hiring",
-    "description": "Matt Groch promoted to Global Managing Director of TRUE Global Intelligence, signaling FH's intent to expand data/AI-driven services.",
+    "description": "Matt Groch promoted to Global Managing Director of TRUE Global Intelligence (FH's analytics arm), signaling FH's intent to expand data/AI-driven services at the highest level.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
+    "quarter": "2023-Q1"
+  },
+  {
+    "date": "2023-01-23",
+    "type": "Acquisition",
+    "description": "McKinsey acquires Iguazio, a Tel Aviv-based MLOps platform company, adding its technology and 70+ AI specialists to QuantumBlack to accelerate and scale AI deployments for clients.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
     "quarter": "2023-Q1"
   },
   {
@@ -50,7 +66,7 @@
   {
     "date": "2023-03-16",
     "type": "Acquisition",
-    "description": "APCO acquires Gagen MacDonald, a Chicago-based transformation and employee engagement consultancy, to deepen its capabilities in guiding organizational change.",
+    "description": "APCO acquires Gagen MacDonald, a Chicago-based transformation and employee engagement consultancy, to deepen its capabilities in guiding organizational change and managing the human side of change spurred by AI and digital disruption.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2023-Q1"
@@ -58,7 +74,7 @@
   {
     "date": "2023-03-24",
     "type": "Thought Leadership",
-    "description": "FTI's TMT practice publishes a News Bytes tech newsletter discussing Google's release of Bard and declaring the age of AI begins.",
+    "description": "FTI's TMT practice publishes a News Bytes tech newsletter discussing Google's release of Bard and declaring \"the age of AI begins.\"",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2023-Q1"
@@ -66,7 +82,7 @@
   {
     "date": "2023-03-27",
     "type": "Action",
-    "description": "Weber Shandwick Futures launches a generative AI-powered 'Narrative Intelligence' platform to help visualize and inform comms strategy in the context of market narratives.",
+    "description": "Weber Shandwick Futures launches a generative AI-powered \"Narrative Intelligence\" platform to help visualize and inform comms strategy in the context of market narratives.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2023-Q1"
@@ -74,7 +90,7 @@
   {
     "date": "2023-03-27",
     "type": "Action",
-    "description": "BerlinRosen & Glen Echo launch European office in Amsterdam, expanding tech policy communications to EU in preparation for AI regulatory communications needs.",
+    "description": "BerlinRosen & Glen Echo launch European office in Amsterdam, expanding tech policy communications to EU market in preparation for AI regulatory communications needs.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2023-Q1"
@@ -99,7 +115,7 @@
   {
     "date": "2023-05-03",
     "type": "Thought Leadership",
-    "description": "Edelman.com features \"Top 9 Applications of Generative AI for Marketers That You Can Adopt Tomorrow\" by Justin Westcott, listing practical use cases of generative AI in marketing/comms.",
+    "description": "Edelman.com features 'Top 9 Applications of Generative AI for Marketers That You Can Adopt Tomorrow' by Justin Westcott, listing practical use cases of generative AI in marketing and communications.",
     "source": "Edelman Blog",
     "firm": "Edelman",
     "firmSlug": "edelman",
@@ -124,7 +140,7 @@
   {
     "date": "2023-06-14",
     "type": "Thought Leadership",
-    "description": "Edelman publishes \"We've Been Here Before: How Social Media Prepared Business Leaders for The AI Revolution,\" drawing parallels between past social media disruption and the emerging AI revolution.",
+    "description": "Edelman publishes 'We've Been Here Before: How Social Media Prepared Business Leaders for The AI Revolution,' drawing parallels between social media disruption and the emerging AI revolution.",
     "source": "Edelman Insights",
     "firm": "Edelman",
     "firmSlug": "edelman",
@@ -133,16 +149,24 @@
   {
     "date": "2023-06-25",
     "type": "Thought Leadership",
-    "description": "VentureBeat runs an op-ed titled \"How ChatGPT and Generative AI Could Bring the Star Trek Holodeck to Life,\" exploring imaginative long-term possibilities of generative AI.",
+    "description": "VentureBeat runs an op-ed titled 'How ChatGPT and Generative AI Could Bring the Star Trek Holodeck to Life,' exploring imaginative long-term possibilities of generative AI.",
     "source": "VentureBeat",
     "firm": "Edelman",
     "firmSlug": "edelman",
     "quarter": "2023-Q2"
   },
   {
+    "date": "2023-07-18",
+    "type": "Partnership",
+    "description": "McKinsey announces a collaboration with Cohere to bring enterprise-grade generative AI to clients, leveraging Cohere's large language models and platform for private, secure AI applications.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2023-Q3"
+  },
+  {
     "date": "2023-07-26",
     "type": "Partnership",
-    "description": "BCW (now Burson) enters exclusive partnership with Limbik (AI firm) and launches 'BCW Decipher' – a cognitive AI platform to predict and neutralize harmful narratives (misinformation) by assessing message credibility and viral potential.",
+    "description": "BCW (now Burson) enters exclusive partnership with Limbik (AI firm) and launches 'BCW Decipher' – a cognitive AI platform to predict and neutralize harmful narratives by assessing message credibility and viral potential.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2023-Q3"
@@ -150,7 +174,7 @@
   {
     "date": "2023-08",
     "type": "Thought Leadership",
-    "description": "Jim O'Leary (NA CEO) publishes a Fast Company op-ed (with colleague Will Crain) on the need for CEOs to balance AI capabilities with authenticity in their communications.",
+    "description": "Jim O'Leary (NA CEO) publishes a Fast Company op-ed with colleague Will Crain on the need for CEOs to balance AI capabilities with authenticity in their communications.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2023-Q3"
@@ -158,15 +182,23 @@
   {
     "date": "2023-08",
     "type": "Hiring",
-    "description": "Corey duBrowa announced as Global CEO of BCW, joining from Google with mandate to accelerate innovation and articulate an 'AI-first' vision for the firm.",
+    "description": "Corey duBrowa announced as Global CEO of BCW, joining from Google with a mandate to accelerate innovation and an 'AI-first' vision for the firm.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2023-Q3"
   },
   {
+    "date": "2023-08-02",
+    "type": "Thought Leadership",
+    "description": "McKinsey publishes a case study on partnering with Google Cloud to use generative AI in Formula E racing, helping an electric race car set a world record for indoor land speed.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2023-Q3"
+  },
+  {
     "date": "2023-09",
     "type": "Action",
-    "description": "Penta establishes an internal AI Task Force led by Andrea Christianson.",
+    "description": "Penta establishes an internal AI Task Force led by Andrea Christianson to pilot AI use cases and develop internal AI usage policies.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2023-Q3"
@@ -182,7 +214,7 @@
   {
     "date": "2023-09-18",
     "type": "Action",
-    "description": "Accenture Ventures invests in Writer, an enterprise generative AI content platform, to empower clients to transform how they create, personalize and distribute content.",
+    "description": "Accenture (Accenture Ventures) invests in Writer, an enterprise generative AI content platform.",
     "firm": "Accenture Song",
     "firmSlug": "accenture-song",
     "quarter": "2023-Q3"
@@ -190,7 +222,7 @@
   {
     "date": "2023-10",
     "type": "Thought Leadership",
-    "description": "FGS Global publishes its Q3 2023 Business Policy Survey report with a section on AI, finding 57% of employees have used generative AI at work but only 49% report having AI usage guidelines.",
+    "description": "FGS Global publishes its Q3 2023 Business Policy Survey report finding that 57% of employees and decision-makers have used generative AI at work, but only 49% report having AI usage guidelines.",
     "firm": "FGS",
     "firmSlug": "fgs-global",
     "quarter": "2023-Q4"
@@ -198,7 +230,7 @@
   {
     "date": "2023-10",
     "type": "Thought Leadership",
-    "description": "Oxford University Innovation features \"Words to create impact\" case study on the Kekst-Oxford project, describing the new communication pattern measurement system Kekst CNC co-developed.",
+    "description": "Oxford University Innovation publishes 'Words to create impact' case study on the Kekst-Oxford project, describing the new communication pattern measurement system.",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2023-Q4"
@@ -206,7 +238,7 @@
   {
     "date": "2023-10-11",
     "type": "Thought Leadership",
-    "description": "Weber Shandwick hosts an 'AI Deciphered' panel in New York in partnership with PRWeek/Campaign.",
+    "description": "Weber Shandwick hosts an \"AI Deciphered\" panel in New York in partnership with PRWeek/Campaign.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2023-Q4"
@@ -214,7 +246,7 @@
   {
     "date": "2023-10-25",
     "type": "Thought Leadership",
-    "description": "David Droga (CEO of Song) interview published discussing Gen AI's looming impact, asserting generative AI won't devour jobs but the people who can operate it will.",
+    "description": "David Droga (CEO of Song) interview published discussing Gen AI's impact, asserting generative AI won't devour jobs but the people who can operate it will.",
     "firm": "Accenture Song",
     "firmSlug": "accenture-song",
     "quarter": "2023-Q4"
@@ -222,7 +254,7 @@
   {
     "date": "2023-10-27",
     "type": "Action",
-    "description": "Hill+Knowlton (now Burson) launches 'H+K Sonar', an AI-powered analytics tool to detect, predict, and mitigate online harmful narratives (disinformation) as part of a new global Intelligence & Technology unit with 50+ specialists.",
+    "description": "Hill+Knowlton (now Burson) launches 'H+K Sonar', an AI-powered analytics tool to detect, predict, and mitigate online harmful narratives as part of a new global Intelligence & Technology unit with 50+ specialists.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2023-Q4"
@@ -238,7 +270,7 @@
   {
     "date": "2023-11-03",
     "type": "Thought Leadership",
-    "description": "FTI's StratComm team launches 'News Bytes' newsletter (Telecom, Media & Tech edition) featuring AI developments and policy moves.",
+    "description": "FTI's StratComm team launches 'News Bytes' newsletter (Telecom, Media & Tech edition) featuring AI developments.",
     "firm": "FTI Total",
     "firmSlug": "fti-total",
     "quarter": "2023-Q4"
@@ -246,7 +278,7 @@
   {
     "date": "2023-11-06",
     "type": "Action",
-    "description": "APCO Worldwide launches 'Adaptive Intelligence' initiative, introducing 'Margy' – an AI-powered virtual team member – and a new AI Advisory offering for clients.",
+    "description": "APCO Worldwide launches 'Adaptive Intelligence' initiative, introducing 'Margy' – an AI-powered virtual team member – and a new AI Advisory offering for clients to help with responsible AI governance, crisis plans, policy advocacy, and AI education.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2023-Q4"
@@ -262,7 +294,7 @@
   {
     "date": "2023-11-08",
     "type": "Thought Leadership",
-    "description": "Communicate (Middle East) and other regional outlets report on the Margy launch, with APCO President Evan Kraus emphasizing AI as an opportunity to harness collective wisdom.",
+    "description": "Communicate (Middle East) and other regional outlets report on the Margy launch, with APCO President Evan Kraus emphasizing that AI is an opportunity to harness the collective wisdom of APCO.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2023-Q4"
@@ -270,7 +302,7 @@
   {
     "date": "2023-11-13",
     "type": "Thought Leadership",
-    "description": "Arab News publishes 'Meet Margy: APCO's new AI-powered team member helping firms navigate transformation' in its corporate news section.",
+    "description": "Arab News publishes 'Meet Margy: APCO's new AI-powered team member helping firms navigate transformation,' bringing APCO's AI news to a Middle East audience.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2023-Q4"
@@ -278,7 +310,7 @@
   {
     "date": "2023-11-14",
     "type": "Action",
-    "description": "FTI Strat Comms hosts a breakfast panel in London on the outcomes of the UK's first AI Safety Summit, featuring leading women in the AI field.",
+    "description": "FTI Strat Comms hosts a breakfast panel in London on the outcomes of the UK's first AI Safety Summit, featuring \"leading women in the AI field.\"",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2023-Q4"
@@ -294,7 +326,7 @@
   {
     "date": "2023-11-16",
     "type": "Thought Leadership",
-    "description": "Teneo publishes 'The World of AI in 2024' article discussing emerging AI trends for 2024 and advising businesses on preparedness.",
+    "description": "Article 'The World of AI in 2024' discusses emerging AI trends for 2024, framing a futuristic scenario of daily life with AI and advising businesses on preparedness.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2023-Q4"
@@ -302,7 +334,7 @@
   {
     "date": "2023-11-16",
     "type": "Action",
-    "description": "Weber Shandwick introduces its 'AI Accelerator' offering to enable communicators and marketers to adopt generative AI.",
+    "description": "Weber Shandwick introduces its \"AI Accelerator\" offering to enable communicators and marketers to adopt generative AI.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2023-Q4"
@@ -310,7 +342,7 @@
   {
     "date": "2023-11-30",
     "type": "Thought Leadership",
-    "description": "FGS hosts 'Managing Reputation in the Age of AI' panel in London on ChatGPT's one-year anniversary, with experts from Clifford Chance, McKinsey, and IBM discussing AI regulation and deepfakes.",
+    "description": "FGS hosts 'Managing Reputation in the Age of AI' panel in London on the one-year anniversary of ChatGPT, with experts from Clifford Chance, McKinsey, and IBM discussing AI regulation, geopolitical tensions, and deepfakes.",
     "firm": "FGS",
     "firmSlug": "fgs-global",
     "quarter": "2023-Q4"
@@ -318,7 +350,7 @@
   {
     "date": "2023-11-30",
     "type": "Thought Leadership",
-    "description": "Brunswick Review Issue 5 includes early AI discussions with \"AI and the Board\" article marking one of the first instances Brunswick's magazine touches on AI's business impact.",
+    "description": "Brunswick Review Issue 5 includes early AI discussions such as 'AI and the Board' article.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2023-Q4"
@@ -342,7 +374,7 @@
   {
     "date": "2023-12",
     "type": "Thought Leadership",
-    "description": "Glen Echo blog 'The Business of AI: Transforming Data' reviews 2023 AI trends including GenAI rise and enterprise AI adoption, sharing insights from Databricks' data/AI report.",
+    "description": "Glen Echo publishes blog 'The Business of AI: Transforming Data' reviewing 2023 AI trends including GenAI rise and enterprise AI adoption, emphasizing AI as integral to business.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2023-Q4"
@@ -350,7 +382,7 @@
   {
     "date": "2023-12-06",
     "type": "Thought Leadership",
-    "description": "Teneo's Risk Advisory team releases 'What to Watch in 2024' Geopolitical Risk Outlook, noting technological disruption including AI as a key theme CEOs must navigate.",
+    "description": "'What to Watch in 2024' – Geopolitical Risk Outlook notes technological disruption as a key theme, including AI as part of accelerating technological disruption that CEOs must navigate.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2023-Q4"
@@ -358,7 +390,7 @@
   {
     "date": "2023-12-13",
     "type": "Thought Leadership",
-    "description": "FTI's IR Monitor newsletter (EMEA) spotlights The buy-side view on AI from an IR Magazine forum, emphasizing AI's role in investment analysis.",
+    "description": "FTI's IR Monitor newsletter (EMEA) spotlights \"The buy-side view on AI\" from an IR Magazine forum, emphasizing that AI is ubiquitous in investment analysis but human engagement remains irreplaceable.",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2023-Q4"
@@ -374,7 +406,7 @@
   {
     "date": "2023-Q2",
     "type": "Action",
-    "description": "Kekst CNC begins collaboration with Oxford University linguists to develop an AI-powered \"Executive Impact Score\" system for analyzing spoken communications.",
+    "description": "Kekst CNC begins collaboration with Oxford University linguists to develop an AI-powered Executive Impact Score system for analyzing spoken communications.",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2023-Q2"
@@ -390,7 +422,7 @@
   {
     "date": "2023-Q4",
     "type": "Action",
-    "description": "APCO establishes a formal AI Steering Committee to oversee all AI initiatives and policy, meeting regularly to set AI usage guidelines, security controls, and strategic priorities.",
+    "description": "APCO establishes a formal AI Steering Committee to oversee all AI initiatives and policy, meeting regularly to set AI usage guidelines, security controls, and strategic priorities for Margy and related tools.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2023-Q4"
@@ -398,7 +430,7 @@
   {
     "date": "2024-01",
     "type": "Acquisition",
-    "description": "WPP announces merger of BCW and Hill+Knowlton to form 'Burson,' effective July 1, 2024, creating a modern, tech-enabled communications powerhouse with an 'AI-first innovation pipeline.'",
+    "description": "WPP announces merger of BCW and Hill+Knowlton to form 'Burson,' effective July 1, 2024, creating a tech-enabled communications powerhouse with an AI-first innovation pipeline.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2024-Q1"
@@ -406,15 +438,23 @@
   {
     "date": "2024-01-08",
     "type": "Thought Leadership",
-    "description": "FTI publishes 'Bridging the Gap Between AI Implementation, Governance and Democracy: An Operational and Regulatory Perspective,' predicting the evolution of the AI landscape in 2024.",
+    "description": "FTI publishes 'Bridging the Gap Between AI Implementation, Governance and Democracy: An Operational and Regulatory Perspective' article predicting the evolution of the AI landscape in 2024.",
     "firm": "FTI Total",
     "firmSlug": "fti-total",
     "quarter": "2024-Q1"
   },
   {
+    "date": "2024-01-09",
+    "type": "Thought Leadership",
+    "description": "McKinsey highlights a project with ING where QuantumBlack helped the bank build a custom generative AI chatbot for customer service.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2024-Q1"
+  },
+  {
     "date": "2024-01-18",
     "type": "Thought Leadership",
-    "description": "Teneo releases Vision 2024 CEO & Investor Survey showing a 20-point jump in CEOs investing in AI (78% in 2024 vs 58% prior year) and detailing concerns about talent and compliance.",
+    "description": "Teneo Vision 2024 – CEO & Investor Survey Release highlights a 20-point jump in CEOs investing in AI (78% in 2024 vs 58% prior year) and details CEOs' concerns versus investors' expectations in AI adoption.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2024-Q1"
@@ -422,7 +462,7 @@
   {
     "date": "2024-01-19",
     "type": "Thought Leadership",
-    "description": "FTI releases Responsible AI Governance: Future Proofing Corporate Governance, Strategy, Risk Management and Reporting, providing a 5-step action plan and FTI's Responsible AI Principles.",
+    "description": "FTI releases \"Responsible AI Governance: Future Proofing Corporate Governance, Strategy, Risk Management and Reporting,\" a report urging boards to adopt AI governance frameworks.",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2024-Q1"
@@ -438,7 +478,7 @@
   {
     "date": "2024-02-29",
     "type": "Thought Leadership",
-    "description": "PRWeek publishes \"Progress Report: How agencies are using AI right now,\" featuring Brian Buchwald outlining Edelman's approach to integrating generative AI into workflows and using 30+ AI platforms internally.",
+    "description": "PRWeek publishes 'Progress Report: How agencies are using AI right now' featuring Brian Buchwald outlining Edelman's approach to helping clients integrate generative AI and using 30+ AI platforms internally.",
     "source": "PRWeek",
     "firm": "Edelman",
     "firmSlug": "edelman",
@@ -447,8 +487,8 @@
   {
     "date": "2024-03-05",
     "type": "Thought Leadership",
-    "description": "Axios publishes \"Public trust in AI is sinking,\" referencing an exclusive Edelman Trust Barometer Flash Poll showing 49% of U.S. respondents reject growing AI adoption.",
-    "source": "Axios / Provoke Media",
+    "description": "Axios publishes 'Public trust in AI is sinking,' referencing an exclusive Edelman Trust Barometer Flash Poll showing 49% of U.S. respondents reject growing AI adoption.",
+    "source": "Axios",
     "firm": "Edelman",
     "firmSlug": "edelman",
     "quarter": "2024-Q1"
@@ -464,7 +504,7 @@
   {
     "date": "2024-03-26",
     "type": "Partnership",
-    "description": "FTI Consulting and Relativity release the General Counsel Report 2025 (6th annual edition), revealing that 44% of GCs are now using AI (up from 20% in 2023).",
+    "description": "FTI Consulting and Relativity release the General Counsel Report 2025, revealing that 44% of GCs are now using AI (up from 20% in 2023).",
     "firm": "FTI Total",
     "firmSlug": "fti-total",
     "quarter": "2024-Q1"
@@ -478,8 +518,16 @@
     "quarter": "2024-Q2"
   },
   {
+    "date": "2024-04-04",
+    "type": "Partnership",
+    "description": "McKinsey and Google Cloud announce a partnership to help companies harness generative AI potential, combining McKinsey's industry expertise with Google's AI/ML services like Vertex AI.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2024-Q2"
+  },
+  {
     "date": "2024-04-08",
-    "type": "Action",
+    "type": "Hiring",
     "description": "Edelman promotes Brian Buchwald to Global Chair of Artificial Intelligence and Product to spearhead further AI investment.",
     "source": "PRWeek",
     "firm": "Edelman",
@@ -489,7 +537,7 @@
   {
     "date": "2024-04-22",
     "type": "Action",
-    "description": "BerlinRosen Holdings rebrands as Orchestra, uniting eight agencies under one brand and positioning itself as a data-driven, multi-specialty communications firm adapting to AI and data analytics innovation.",
+    "description": "BerlinRosen Holdings rebrands as Orchestra, uniting eight agencies under one brand and positioning itself as a data-driven, multi-specialty communications firm adapting to AI and data analytics tools.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2024-Q2"
@@ -497,7 +545,7 @@
   {
     "date": "2024-04-25",
     "type": "Thought Leadership",
-    "description": "Axios report 'PR firms race to launch internal AI tools' notes many communications firms using AI for trend monitoring and message testing, setting industry backdrop for Orchestra's AI tool adoption.",
+    "description": "Axios reports on PR firms racing to launch internal AI tools for trend monitoring and message testing, setting industry backdrop for Orchestra's own AI tool adoption.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2024-Q2"
@@ -505,7 +553,7 @@
   {
     "date": "2024-05",
     "type": "Hiring",
-    "description": "Joyce Higgins joins FH London as Head of AI Strategy to lead AI transformation across the agency.",
+    "description": "Joyce Higgins joins FH (London) as Head of AI Strategy to lead AI transformation across the agency.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2024-Q2"
@@ -521,7 +569,7 @@
   {
     "date": "2024-05-09",
     "type": "Thought Leadership",
-    "description": "Charles Palmer (Global TMT lead) publishes Harnessing the Benefits of AI While Managing Operational and Reputational Risks, advising companies on crafting AI narratives.",
+    "description": "\"Harnessing the Benefits of AI While Managing Operational and Reputational Risks,\" an article by Charles Palmer (Global TMT lead), is published advising companies on crafting AI narratives.",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2024-Q2"
@@ -529,15 +577,23 @@
   {
     "date": "2024-05-09",
     "type": "Thought Leadership",
-    "description": "FTI StratComm publishes 'Harnessing the Benefits of AI While Managing Operational and Reputational Risks' authored by Senior MD Charles Palmer.",
+    "description": "FTI StratComm publishes 'Harnessing the Benefits of AI While Managing Operational and Reputational Risks' by Senior MD Charles Palmer.",
     "firm": "FTI Total",
     "firmSlug": "fti-total",
     "quarter": "2024-Q2"
   },
   {
+    "date": "2024-05-16",
+    "type": "Partnership",
+    "description": "McKinsey forms a strategic partnership with NVIDIA to empower enterprises to adopt generative AI and AI-enabled workflows using NVIDIA's AI computing platforms and software.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2024-Q2"
+  },
+  {
     "date": "2024-06",
     "type": "Action",
-    "description": "Kekst formally unveils its AI-driven executive speech analysis tool, the Executive Impact Score, after a year+ of development with Oxford's experts.",
+    "description": "Kekst formally unveils its AI-driven Executive Impact Score tool after a year+ of development with Oxford experts.",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2024-Q2"
@@ -545,15 +601,23 @@
   {
     "date": "2024-06-04",
     "type": "Action",
-    "description": "FTI showcases a case study demonstrating their interim management of a NASDAQ-listed digital & AI services company post-acquisition, achieving 35% SG&A cost reduction and doubling EBITDA.",
+    "description": "FTI showcases a case study demonstrating their turnaround of a NASDAQ-listed data and AI services firm post-acquisition, achieving 35% SG&A cost reduction and doubling EBITDA.",
     "firm": "FTI Total",
     "firmSlug": "fti-total",
     "quarter": "2024-Q2"
   },
   {
+    "date": "2024-06-18",
+    "type": "Thought Leadership",
+    "description": "McKinsey publishes 'Accelerating generative AI value creation with Iguazio' reporting the integration of Iguazio into QuantumBlack and launch of QuantumBlack Horizon AI development suite.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2024-Q2"
+  },
+  {
     "date": "2024-06-23",
     "type": "Action",
-    "description": "Havas (parent of H/Advisors) unveils a €400 million, 4-year investment plan in data, technology, and AI, announcing development of a new integrated operating system modeled on its 'Converged' AI platform to rollout across all business units including H/Advisors.",
+    "description": "Havas (parent of H/Advisors) unveils a €400 million, 4-year investment plan in data, technology, and AI, announcing development of a new integrated operating system modeled on its \"Converged\" AI platform.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2024-Q2"
@@ -561,15 +625,23 @@
   {
     "date": "2024-06-25",
     "type": "Action",
-    "description": "FTI Consulting launches a cross-segment Digital & AI offering with 1,100 professionals aligned across 9 areas including Artificial Intelligence and Communications & Insights.",
+    "description": "FTI Consulting (firm-wide) launches a cross-segment Digital & AI offering with 1,100 professionals aligned across 9 areas including Artificial Intelligence and Communications & Insights.",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2024-Q2"
   },
   {
+    "date": "2024-06-25",
+    "type": "Action",
+    "description": "QuantumBlack Labs unveils 20+ industry AI products with 140+ use-case accelerators, including OptimusAI, LifeSciences.AI, Insurance AI, and Retail AI, marking a shift toward productized offerings.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2024-Q2"
+  },
+  {
     "date": "2024-06-26",
     "type": "Thought Leadership",
-    "description": "APCO publishes 'Opportunities and Challenges of AI in the Communications Industry: APCO's Approach,' authored by Imad Lahad, documenting APCO's internal AI journey and philosophy.",
+    "description": "APCO publishes blog 'Opportunities and Challenges of AI in the Communications Industry: APCO's Approach' by Imad Lahad, revealing the AI Comms Lab launch in 2018 and the existence of 60+ AI advocates globally.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2024-Q2"
@@ -577,7 +649,7 @@
   {
     "date": "2024-07-05",
     "type": "Thought Leadership",
-    "description": "Campaign Middle East runs op-ed 'Keeping up with AI: We need to move fast' by APCO's Imad Lahad discussing AI bringing communications to an inflection point.",
+    "description": "Campaign Middle East runs op-ed 'Keeping up with AI: We need to move fast' by APCO's Imad Lahad, discussing how AI brings communications to an inflection point and emphasizing urgent but responsible adoption.",
     "firm": "APCO",
     "firmSlug": "apco",
     "quarter": "2024-Q3"
@@ -585,14 +657,14 @@
   {
     "date": "2024-07-18",
     "type": "Thought Leadership",
-    "description": "Weber Shandwick EMEA publishes 'AI: transforming communications and brand trust.'",
+    "description": "Weber Shandwick EMEA publishes \"AI: transforming communications and brand trust.\" authored by Barnaby Fry.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2024-Q3"
   },
   {
     "date": "2024-08",
-    "type": "Hiring",
+    "type": "Action",
     "description": "Henry Timms assumes CEO role at Brunswick Group with a mandate to innovate and broaden expertise.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
@@ -601,7 +673,7 @@
   {
     "date": "2024-08-29",
     "type": "Hiring",
-    "description": "Brunswick hires Christine Schirmer (former Apple comms exec and Sussex advisor) as a Partner in San Francisco, joining the Tech, Media & Telecom (TMT) practice.",
+    "description": "Brunswick hires Christine Schirmer as a Partner in San Francisco joining the Tech, Media & Telecom practice.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2024-Q3"
@@ -609,7 +681,7 @@
   {
     "date": "2024-09-16",
     "type": "Action",
-    "description": "Excellera affiliate Community reorganizes leadership (new CEO Roberto Patriarca, founder Auro Palomba becomes Vice Chair) to prepare for upcoming national and international challenges of Excellera.",
+    "description": "Excellera affiliate Community reorganizes leadership (new CEO Roberto Patriarca, founder Auro Palomba becomes Vice Chair) to prepare for upcoming national and international challenges.",
     "firm": "Excellera",
     "firmSlug": "excellera",
     "quarter": "2024-Q3"
@@ -617,7 +689,7 @@
   {
     "date": "2024-09-18",
     "type": "Action",
-    "description": "Burson launches 'Decipher Health,' a cognitive AI solution to optimize healthcare communications that analyzes disease-specific content for credibility/engagement and predicts which health messages will resonate with audiences.",
+    "description": "Burson launches 'Decipher Health,' a cognitive AI solution to optimize healthcare communications by analyzing disease-specific content for credibility/engagement and predicting message resonance.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2024-Q3"
@@ -625,7 +697,7 @@
   {
     "date": "2024-09-19",
     "type": "Acquisition",
-    "description": "Orchestra acquires Civitas Public Affairs Group, adding social impact and policy expertise with focus on advocacy and DEI, marking the company's 7th acquisition since 2022.",
+    "description": "Orchestra acquires Civitas Public Affairs Group, adding social impact and policy expertise to enhance ability to counsel on AI ethics and policy communications.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2024-Q3"
@@ -633,7 +705,7 @@
   {
     "date": "2024-09-19",
     "type": "Acquisition",
-    "description": "Excellera acquires Intwig, a 11-person data intelligence and AI firm founded by Aldo Cristadoro.",
+    "description": "Excellera acquires Intwig, a 11-person data intelligence and AI firm founded by Aldo Cristadoro, bringing big data analytics and AI capabilities in-house.",
     "firm": "Excellera",
     "firmSlug": "excellera",
     "quarter": "2024-Q3"
@@ -665,7 +737,7 @@
   {
     "date": "2024-10-09",
     "type": "Partnership",
-    "description": "Teneo announces strategic partnership with Aily Labs to integrate AI-driven decision intelligence platform with 300+ predictive models into Teneo's services.",
+    "description": "Teneo announces strategic partnership with Aily Labs to integrate AI-driven decision intelligence into Teneo's services, featuring 300+ predictive models for real-time insights.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2024-Q4"
@@ -673,7 +745,7 @@
   {
     "date": "2024-10-11",
     "type": "Thought Leadership",
-    "description": "Weber Shandwick's website features 'Beyond tactical applications: Exploring AI's role in creativity and strategy,' summarizing insights from the AI Deciphered panel.",
+    "description": "Weber Shandwick's website features \"Beyond tactical applications: Exploring AI's role in creativity and strategy,\" summarizing insights from the AI Deciphered panel.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2024-Q4"
@@ -681,7 +753,7 @@
   {
     "date": "2024-10-17",
     "type": "Acquisition",
-    "description": "Orchestra buys Small Girls PR, strengthening creative and earned media capabilities including experiential and influencer marketing, marking approximately 8th acquisition with total staff reaching 700.",
+    "description": "Orchestra acquires Small Girls PR, strengthening creative and earned media capabilities including experiential and influencer marketing for AI communications campaigns.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2024-Q4"
@@ -689,7 +761,7 @@
   {
     "date": "2024-10-23",
     "type": "Action",
-    "description": "FTI Strat Comms co-hosts a panel event with the Arthur W. Page Society in London on Leveraging Generative AI for Communications in Regulated Industries.",
+    "description": "In partnership with the Arthur W. Page Society, FTI Strat Comms co-hosts a panel event in London on \"Leveraging Generative AI for Communications in Regulated Industries.\"",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2024-Q4"
@@ -697,7 +769,7 @@
   {
     "date": "2024-10-24",
     "type": "Thought Leadership",
-    "description": "Penta releases a survey report on AI in the workplace, finding an enthusiasm gap between senior executives and junior staff.",
+    "description": "Penta releases a survey report on AI in the workplace, finding an 'enthusiasm gap' between senior executives and junior staff regarding AI adoption.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2024-Q4"
@@ -705,7 +777,7 @@
   {
     "date": "2024-11",
     "type": "Thought Leadership",
-    "description": "Message Lab publishes 'How we use AI in content marketing,' an internal guide explaining Orchestra's use of ChatGPT for idea generation, simplifying complex information, and drafting short copy while emphasizing human oversight.",
+    "description": "Message Lab publishes 'How we use AI in content marketing' internal guide explaining Orchestra's use of ChatGPT for idea generation, simplifying complex information, and drafting short copy while emphasizing human oversight.",
     "firm": "Orchestra",
     "firmSlug": "orchestra",
     "quarter": "2024-Q4"
@@ -713,15 +785,15 @@
   {
     "date": "2024-11-25",
     "type": "Thought Leadership",
-    "description": "FTI publishes Decoding AI Disclosure (Europe edition) with Trinity College Dublin, examining how STOXX Europe 50 companies disclose AI information.",
+    "description": "FTI (with Trinity College Dublin) publishes \"Decoding AI Disclosure\" (Europe edition) examining how STOXX Europe 50 companies disclose AI information.",
     "firm": "FTI Strat Comms",
     "firmSlug": "fti-strat-comms",
     "quarter": "2024-Q4"
   },
   {
     "date": "2024-12",
-    "type": "Action",
-    "description": "Fast Company names The Weber Shandwick Collective to its 'Most Innovative Companies 2024' list, with Weber Shandwick's advances in data/AI likely cited as a factor.",
+    "type": "Partnership",
+    "description": "Fast Company names The Weber Shandwick Collective to its \"Most Innovative Companies 2024\" list, with Weber's advances in data/AI cited as a factor.",
     "firm": "Weber Shandwick",
     "firmSlug": "weber-shandwick",
     "quarter": "2024-Q4"
@@ -729,7 +801,7 @@
   {
     "date": "2024-12",
     "type": "Thought Leadership",
-    "description": "\"Conversazioni sull'Intelligenza Artificiale, il futuro è oggi\" – A Winter Convention by Community (Excellera partner firm) features Aldo Cristadoro as a speaker discussing new frontiers of Generative AI and its impact on their activities.",
+    "description": "\"Conversazioni sull'Intelligenza Artificiale, il futuro è oggi\" – A Winter Convention by Community (Excellera partner firm) features Aldo Cristadoro as a speaker discussing new frontiers of Generative AI and its impact.",
     "firm": "Excellera",
     "firmSlug": "excellera",
     "quarter": "2024-Q4"
@@ -737,7 +809,7 @@
   {
     "date": "2024-12-05",
     "type": "Thought Leadership",
-    "description": "Axios hosts 'Reimagining Corporate Communications' event (NYC) sponsored by Burson, where Burson leaders discuss adapting strategies in a shifting media landscape including AI and stakeholder activism.",
+    "description": "Axios hosts 'Reimagining Corporate Communications' event in NYC sponsored by Burson, where Burson leaders discuss adapting strategies in a shifting media landscape including AI and stakeholder activism.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2024-Q4"
@@ -745,7 +817,7 @@
   {
     "date": "2024-12-20",
     "type": "Thought Leadership",
-    "description": "Co-founder Joele Frank appeared on The M&A Advisor's podcast discussing the firm's approach to PR in a changing environment, highlighting leveraging digital tools and social media to boost stakeholder engagement.",
+    "description": "Co-founder Joele Frank appeared on The M&A Advisor's podcast discussing leveraging digital tools and social media to boost stakeholder engagement and thriving amid industry innovation.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2024-Q4"
@@ -753,7 +825,7 @@
   {
     "date": "2024-Q4",
     "type": "Action",
-    "description": "Brunswick initiates a formal \"AI Lab\" program and interviews candidates for Head of AI Labs, signaling creation of an in-house team to develop AI capabilities.",
+    "description": "Brunswick initiates a formal 'AI Lab' program and interviews candidates for Head of AI Labs.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2024-Q4"
@@ -769,7 +841,7 @@
   {
     "date": "2024-Q4",
     "type": "Action",
-    "description": "Intwig team integration and AI development phase: In the months following the acquisition (Sep–Dec 2024), Cristadoro's data science team collaborates with Excellera consultants to develop the new Excellera Intelligence platform and services.",
+    "description": "Intwig team integration and AI development phase: In the months following the acquisition (Sep-Dec 2024), Cristadoro's data science team collaborates with Excellera consultants to develop the new Excellera Intelligence platform and services.",
     "firm": "Excellera",
     "firmSlug": "excellera",
     "quarter": "2024-Q4"
@@ -777,7 +849,7 @@
   {
     "date": "2025-01",
     "type": "Thought Leadership",
-    "description": "Brunswick's 7th Annual Trends Forecast (Trends 2025) is released, for the first time highlighting AI as a key theme for the year ahead.",
+    "description": "Brunswick's 7th Annual Trends Forecast (Trends 2025) is released highlighting AI as a key theme.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q1"
@@ -793,7 +865,7 @@
   {
     "date": "2025-01-10",
     "type": "Hiring",
-    "description": "Eric Kaplan, head of the firm's creative and design team, was promoted to partner, underscoring the firm's focus on digital and creative capabilities.",
+    "description": "Eric Kaplan, head of the firm's creative and design team, was promoted to Partner.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2025-Q1"
@@ -809,7 +881,7 @@
   {
     "date": "2025-02-03",
     "type": "Hiring",
-    "description": "Kekst CNC announces the appointment of Sean Evins, former Meta and Twitter policy lead, as a Partner in London to strengthen the firm's AI, emerging tech, and digital transformation advisory capabilities.",
+    "description": "Sean Evins, former Meta and Twitter policy lead, joins as Partner in London to strengthen the firm's AI, emerging tech, and digital transformation advisory capabilities.",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2025-Q1"
@@ -817,7 +889,7 @@
   {
     "date": "2025-02-20",
     "type": "Thought Leadership",
-    "description": "Sparky Zivin publishes 'Vision 2025: Everything is About to Change with AI in 2025' highlighting that 99% of CEOs are now investing in AI with over half of large enterprises' AI projects showing ROI.",
+    "description": "Sparky Zivin publishes 'Vision 2025: Everything is About to Change with AI in 2025' highlighting that 99% of CEOs now investing in AI and over half of large enterprises' AI projects showing ROI.",
     "firm": "Teneo",
     "firmSlug": "teneo",
     "quarter": "2025-Q1"
@@ -825,7 +897,7 @@
   {
     "date": "2025-03",
     "type": "Hiring",
-    "description": "Brunswick posts a job opening for AI Engineer in London to develop LLM-based applications for internal and client use.",
+    "description": "Brunswick posts job opening for AI Engineer in London to develop LLM-based applications.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q1"
@@ -833,7 +905,7 @@
   {
     "date": "2025-04-15",
     "type": "Thought Leadership",
-    "description": "Brunswick Review publishes \"An AI-First World,\" an interview with Euro Beinat (Global Head of AI at Prosus) by Brunswick partners Caroline Daniel & Yousef Sharif.",
+    "description": "Brunswick Review publishes 'An AI-First World' interview with Euro Beinat of Prosus.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q2"
@@ -841,7 +913,7 @@
   {
     "date": "2025-04-16",
     "type": "Thought Leadership",
-    "description": "Brunswick Review publishes \"The Rise of the Chief AI Officer\" by Caroline Daniel, featuring interviews with several Chief AI Officers and exploring the growing demand for this role.",
+    "description": "Brunswick Review publishes 'The Rise of the Chief AI Officer' exploring growing demand for this C-suite role.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q2"
@@ -857,7 +929,7 @@
   {
     "date": "2025-05",
     "type": "Action",
-    "description": "Brunswick formally integrates AI into its service offerings catalog, listing \"Digital & AI capabilities\" including \"Algorithmic Relations\" and \"Misinformation & Disinformation\" advisory.",
+    "description": "Brunswick formally integrates AI into its service offerings catalog including Digital & AI capabilities.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q2"
@@ -865,7 +937,7 @@
   {
     "date": "2025-05-02",
     "type": "Thought Leadership",
-    "description": "FH publishes 'From Chaos to Clarity: Why AI is the Communications Industry's Strategic Imperative' by Matt Groch & Caitlin Teahan.",
+    "description": "FH publishes 'From Chaos to Clarity: Why AI is the Communications Industry's Strategic Imperative' (by Matt Groch & Caitlin Teahan) – an article articulating FH's view that AI is revolutionizing comms and agencies must adapt or fall behind.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q2"
@@ -873,7 +945,7 @@
   {
     "date": "2025-05-21",
     "type": "Thought Leadership",
-    "description": "Joele Frank published a mid-year public insight noting key themes from the Milken Global Conference, explicitly observing AI as a top discussion point among global business leaders.",
+    "description": "Joele Frank published mid-year insight \"Reading the Room: The 2025 Landscape So Far\" noting AI, trade tariffs, and climate as key themes from the Milken Global Conference.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2025-Q2"
@@ -881,7 +953,7 @@
   {
     "date": "2025-05-27",
     "type": "Action",
-    "description": "Launch of SAGE Virtual Audience Platform, an AI-powered synthetic audience tool to help clients test campaigns with lifelike audience models.",
+    "description": "Launch of 'SAGE' Virtual Audience Platform: FH announces Sage – an AI-powered synthetic audience tool and dedicated team to help clients test campaigns with lifelike audience models.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q2"
@@ -889,7 +961,7 @@
   {
     "date": "2025-06",
     "type": "Thought Leadership",
-    "description": "At NIRI's 2025 conference, Joele Frank Managing Director Lucas Pers moderated a panel on digital communications, AI, and the evolving social landscape in investor engagement.",
+    "description": "Managing Director Lucas Pers moderated NIRI Annual Conference panel \"Podcasts, Posts, Tweets and More\" focusing on digital communications, AI, and evolving social landscape in investor engagement.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2025-Q2"
@@ -897,7 +969,7 @@
   {
     "date": "2025-06-10",
     "type": "Action",
-    "description": "Burson unveils 'Reputation Capital,' an AI-powered tech+consulting offering that connects 8 drivers of reputation to business outcomes and provides an 'almost real-time' reputation score and predictive scenario analysis.",
+    "description": "Burson unveils 'Reputation Capital,' an AI-powered tech+consulting offering that connects 8 drivers of reputation to business outcomes and provides an almost real-time reputation score with predictive scenario analysis.",
     "firm": "Burson",
     "firmSlug": "burson",
     "quarter": "2025-Q2"
@@ -905,7 +977,7 @@
   {
     "date": "2025-06-11",
     "type": "Thought Leadership",
-    "description": "H/Advisors Public Affairs publishes 'Redefining Sovereignty in a Digital Age', an insights piece examining EU digital geopolitics, discussing EU's dependency on cloud infrastructure and implications for AI, data mobility and cybersecurity.",
+    "description": "H/Advisors Public Affairs publishes \"Redefining Sovereignty in a Digital Age\", an insights piece examining EU digital geopolitics and discussing the EU's dependency on cloud infrastructure and implications for AI, data mobility and cybersecurity.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2025-Q2"
@@ -913,7 +985,7 @@
   {
     "date": "2025-06-12",
     "type": "Thought Leadership",
-    "description": "JF published 'IR's New Rules: Digital, Direct and Differentiated' with a section on generative AI becoming a reliable supplemental tool for IR teams.",
+    "description": "JF published \"IR's New Rules: Digital, Direct and Differentiated\" featuring section \"AI Behind the Curtain\" advising that Generative AI is becoming a reliable supplemental tool for IR teams.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2025-Q2"
@@ -921,7 +993,7 @@
   {
     "date": "2025-07-14",
     "type": "Action",
-    "description": "Introduction of FH Fusion, a firm-wide AI innovation framework built on Omnicom's Omni platform to empower consultants with generative AI and data tools.",
+    "description": "Introduction of FH Fusion (Data and AI-Powered Solutions Suite): FH rolls out Fusion to 'close the innovation gap' – a firm-wide AI innovation framework built on Omnicom's Omni platform.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q3"
@@ -929,14 +1001,14 @@
   {
     "date": "2025-07-15",
     "type": "Thought Leadership",
-    "description": "Joele Frank executives spoke on a Faegre Drinker panel about using AI preemptively to preview how stakeholders will interpret disclosure.",
+    "description": "Jed Repko, Lisa Boyd, and Natalia Weaver spoke on Faegre Drinker panel about \"Investor Communications During Turbulent Times,\" advising to consider using AI preemptively to preview stakeholder reactions.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2025-Q3"
   },
   {
     "date": "2025-07-30",
-    "type": "Action",
+    "type": "Partnership",
     "description": "H/Advisors and Havas Red form a joint venture in Singapore, combining H/Advisors Klareco (corp comms) with Havas Red (consumer PR, social, experiential) into a single operation.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
@@ -944,8 +1016,16 @@
   },
   {
     "date": "2025-08-07",
+    "type": "Thought Leadership",
+    "description": "McKinsey releases a story on its internal McKinsey Value Intelligence (MVI) Assistant, a gen AI tool built on Google Cloud's Gemini model that provides consultants with instant insights on 50,000+ companies.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2025-Q3"
+  },
+  {
+    "date": "2025-08-07",
     "type": "Acquisition",
-    "description": "Shamrock Capital acquires Penta Group, committing investment to build out Penta's analytics and AI capabilities further and scale globally.",
+    "description": "Shamrock Capital acquires Penta Group in a private equity deal aimed at accelerating growth and building out Penta's analytics and AI capabilities.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2025-Q3"
@@ -953,7 +1033,7 @@
   {
     "date": "2025-08-20",
     "type": "Thought Leadership",
-    "description": "PR Week (UK) publishes 'Our AI Plan: H/Advisors Maitland', a Q&A with Anna Fishlock (Head of Data & Digital) outlining the firm's AI priorities, current uses, and stance on tools.",
+    "description": "PR Week (UK) publishes \"Our AI Plan: H/Advisors Maitland\", a Q&A with Anna Fishlock (Head of Data & Digital) on how H/Advisors is staying ahead of the AI revolution.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2025-Q3"
@@ -961,7 +1041,7 @@
   {
     "date": "2025-08-21",
     "type": "Thought Leadership",
-    "description": "Brunswick Review publishes \"A Road Map for AI,\" an in-depth interview with Simon Greenman (co-founder of MapQuest) about AI's opportunities and risks.",
+    "description": "Brunswick Review publishes 'A Road Map for AI' interview with Simon Greenman about AI opportunities and risks.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q3"
@@ -969,7 +1049,7 @@
   {
     "date": "2025-09",
     "type": "Thought Leadership",
-    "description": "Brunswick releases \"AI Impact\" (Issue 6) of the Brunswick Review, a special issue devoted entirely to AI in business.",
+    "description": "Brunswick releases 'AI Impact' Issue 6 of Brunswick Review devoted entirely to AI in business.",
     "firm": "Brunswick",
     "firmSlug": "brunswick",
     "quarter": "2025-Q3"
@@ -977,7 +1057,7 @@
   {
     "date": "2025-09-02",
     "type": "Thought Leadership",
-    "description": "Ephraim Cohen publishes 'A Look at Our Most Powerful AI Ingredient: People' outlining FH's philosophy of empowering people with AI.",
+    "description": "'A Look at Our Most Powerful AI Ingredient: People' – Ephraim Cohen publishes a flagship article outlining FH's philosophy of empowering people with AI rather than chasing tech fads.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q3"
@@ -985,7 +1065,7 @@
   {
     "date": "2025-09-04",
     "type": "Hiring",
-    "description": "E.J. Kim appointed Global Managing Director of TRUE Global Intelligence, succeeding Matt Groch who moves to a tech architecture role.",
+    "description": "E.J. Kim appointed Global Managing Director of TRUE Global Intelligence (FH's research & analytics consultancy).",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q3"
@@ -993,15 +1073,23 @@
   {
     "date": "2025-09-10",
     "type": "Hiring",
-    "description": "Aaron Kwittken joins FGS Global as Partner & Global Head of Intelligence & Engagement, a new executive role created to unify FGS's digital, data analytics, and AI initiatives.",
+    "description": "Aaron Kwittken joins FGS Global as Partner & Global Head of Intelligence & Engagement to unify FGS's digital, data analytics, and AI initiatives.",
     "firm": "FGS",
     "firmSlug": "fgs-global",
     "quarter": "2025-Q3"
   },
   {
+    "date": "2025-09-15",
+    "type": "Thought Leadership",
+    "description": "McKinsey publishes a podcast episode 'How to lead through the AI disruption' featuring a discussion on fast AI innovation and how organizations can capture value in the era of democratized AI.",
+    "firm": "McKinsey/QB",
+    "firmSlug": "mckinsey-quantumblack",
+    "quarter": "2025-Q3"
+  },
+  {
     "date": "2025-09-24",
     "type": "Thought Leadership",
-    "description": "FH releases '5 AI Risks Every Company Should Be Aware Of' by Zack Kavanaugh highlighting communication pitfalls in AI adoption.",
+    "description": "FH releases '5 AI Risks Every Company Should Be Aware Of' (by Zack Kavanaugh) highlighting communication pitfalls in AI adoption.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q3"
@@ -1009,7 +1097,7 @@
   {
     "date": "2025-10",
     "type": "Thought Leadership",
-    "description": "Kekst CNC posts on LinkedIn announcing the Above the Noise series and highlighting key insights, with one clip emphasizing \"Turning AI into a Strategic Advantage.\"",
+    "description": "Kekst CNC posts on LinkedIn highlighting 'Turning AI into a Strategic Advantage' and addressing client concerns about getting ahead with AI.",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2025-Q4"
@@ -1017,7 +1105,7 @@
   {
     "date": "2025-10",
     "type": "Thought Leadership",
-    "description": "Penta's senior team ramps up public discussion on AI with Dan LaRusso posting about AI's impact on reputation and policy, and What's at Stake podcast releasing AI-focused episodes.",
+    "description": "Penta's senior team ramps up public discussion on AI with LinkedIn posts and What's at Stake podcast episodes on AI's impact on media.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2025-Q4"
@@ -1025,7 +1113,7 @@
   {
     "date": "2025-10-08",
     "type": "Thought Leadership",
-    "description": "Kekst CNC releases Episode 1 of its new thought leadership video series Above the Noise, titled \"How AI Is Reshaping Corporate Communication: GEO, Trust and Strategy.\"",
+    "description": "Kekst CNC launches 'Above the Noise' video series with Episode 1 'How AI Is Reshaping Corporate Communication: GEO, Trust and Strategy.'",
     "firm": "Kekst",
     "firmSlug": "kekst",
     "quarter": "2025-Q4"
@@ -1033,7 +1121,7 @@
   {
     "date": "2025-10-14",
     "type": "Thought Leadership",
-    "description": "FH publishes 'Augmented Judgment, Accelerated Execution: AI's Role in Crisis, Issues and Risk Management' by Matt Rose & Alex Lyall.",
+    "description": "FH publishes 'Augmented Judgment, Accelerated Execution: AI's Role in Crisis, Issues and Risk Management' detailing how FH is using AI in crisis communication and sharing guidelines for AI in crisis practice.",
     "firm": "FleishmanHillard",
     "firmSlug": "fleishmanhillard",
     "quarter": "2025-Q4"
@@ -1041,17 +1129,9 @@
   {
     "date": "2025-10-21",
     "type": "Thought Leadership",
-    "description": "Joele Frank Partner Barrett Golden spoke on a panel at the 13D Monitor Active-Passive Investor Summit about staying ahead of shareholder activism.",
+    "description": "Partner Barrett Golden spoke on panel at 13D Monitor Active-Passive Investor Summit about staying ahead of shareholder activism.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
-    "quarter": "2025-Q4"
-  },
-  {
-    "date": "2025-11",
-    "type": "Thought Leadership",
-    "description": "Kekst CNC likely continues the Above the Noise series with further installments navigating the \"GenAI shift.\"",
-    "firm": "Kekst",
-    "firmSlug": "kekst",
     "quarter": "2025-Q4"
   },
   {
@@ -1063,17 +1143,9 @@
     "quarter": "2025-Q4"
   },
   {
-    "date": "2025-11-20",
-    "type": "Thought Leadership",
-    "description": "FH publishes 'Predictions for Internal and Change Comms in the Age of AI'.",
-    "firm": "FleishmanHillard",
-    "firmSlug": "fleishmanhillard",
-    "quarter": "2025-Q4"
-  },
-  {
     "date": "2025-12-10",
     "type": "Thought Leadership",
-    "description": "Penta publishes 'The New Search Reality: How AI Decides What People Learn About You' – a landmark research report analyzing 10,000 AI chatbot responses about companies.",
+    "description": "Penta publishes 'The New Search Reality: How AI Decides What People Learn About You' research report analyzing 10,000 AI chatbot responses and introducing Generative Engine Optimization concept.",
     "firm": "Penta",
     "firmSlug": "penta-group",
     "quarter": "2025-Q4"
@@ -1089,15 +1161,23 @@
   {
     "date": "2025-Q4",
     "type": "Hiring",
-    "description": "FGS advertises a new senior role, 'Head of AI Advisory,' to lead its forthcoming AI client practice and integrate AI, data & analytics into client operations.",
+    "description": "FGS advertises a new senior role for Head of AI Advisory to lead its forthcoming AI client practice and integrate AI, data & analytics into client operations.",
     "firm": "FGS",
     "firmSlug": "fgs-global",
     "quarter": "2025-Q4"
   },
   {
+    "date": "2025-Q4",
+    "type": "Thought Leadership",
+    "description": "Kekst CNC likely continues the Above the Noise series with further installments on navigating the GenAI shift.",
+    "firm": "Kekst",
+    "firmSlug": "kekst",
+    "quarter": "2025-Q4"
+  },
+  {
     "date": "2026-01",
     "type": "Thought Leadership",
-    "description": "During WEF Davos 2026, H/Advisors actively participates in discussions on global business with AI as a key theme and circulates a 'Leadership perspectives for 2026' global study.",
+    "description": "During WEF Davos 2026, H/Advisors actively participates in discussions on global business with AI as a key theme and circulates a \"Leadership perspectives for 2026\" global study.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2026-Q1"
@@ -1105,7 +1185,7 @@
   {
     "date": "2026-01-08",
     "type": "Action",
-    "description": "Havas debuts 'AVA' (Accessible Virtual Advisor) at CES 2026 as a secure, centralized AI platform for all its agencies, providing compliance-focused portal connecting teams to multiple advanced AI models.",
+    "description": "Havas debuts \"AVA\" (Accessible Virtual Advisor) at CES 2026 as a secure, centralized AI platform for all its agencies.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2026-Q1"
@@ -1113,7 +1193,7 @@
   {
     "date": "2026-01-28",
     "type": "Action",
-    "description": "Joele Frank published its 2025 Year in Review, summarizing 2025 as a milestone year with record project volume amid growing complexity.",
+    "description": "Joele Frank published 2025 Year in Review, summarizing it as a milestone year with record project volume amid growing complexity.",
     "firm": "Joele Frank",
     "firmSlug": "joele-frank",
     "quarter": "2026-Q1"
@@ -1121,7 +1201,7 @@
   {
     "date": "2026-02-02",
     "type": "Acquisition",
-    "description": "Havas announces the acquisition of Acento Public Affairs (Spain) and integration into H/Advisors, with Acento's co-founder José Blanco becoming Co-CEO of H/Advisors.",
+    "description": "Havas announces the acquisition of Acento Public Affairs (Spain) and integration of Acento into H/Advisors.",
     "firm": "H/Advisors",
     "firmSlug": "h-advisors",
     "quarter": "2026-Q1"
