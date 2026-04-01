@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getFirmBySlug, getFirmReportContent } from "@/lib/queries";
+import { getFirmBySlug, getFirmReportContent, getAllFirmsWithEvaluations } from "@/lib/queries";
 import { MaturityBadge } from "@/components/evaluation/maturity-badge";
 import { ConfidenceBadge } from "@/components/evaluation/confidence-badge";
 import { DimensionRadar } from "@/components/evaluation/dimension-radar";
@@ -29,8 +29,27 @@ export default async function FirmDetailPage({
   if (!firm) notFound();
 
   const reportContent = await getFirmReportContent(slug);
+  const allFirms = await getAllFirmsWithEvaluations();
   const evaluation = firm.evaluation;
   const scores = evaluation ? getDimensionScores(evaluation) : [];
+
+  // Compute percentile and gap from mean
+  const allScores = allFirms
+    .filter((f) => f.evaluation)
+    .map((f) => f.evaluation!.compositeScoreWeighted);
+  const mean = allScores.length > 0
+    ? allScores.reduce((a, b) => a + b, 0) / allScores.length
+    : 0;
+  const percentile = evaluation
+    ? Math.round(
+        (allScores.filter((s) => s < evaluation.compositeScoreWeighted).length /
+          (allScores.length - 1)) *
+          100
+      )
+    : null;
+  const gapFromMean = evaluation
+    ? Math.round((evaluation.compositeScoreWeighted - mean) * 10) / 10
+    : null;
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6">
@@ -86,6 +105,24 @@ export default async function FirmDetailPage({
                       </p>
                       <p className="font-medium font-mono">
                         {evaluation.compositeScoreWeighted.toFixed(1)} / 60
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">
+                        Percentile
+                      </p>
+                      <p className="font-medium font-mono">
+                        {percentile !== null ? `${percentile}th` : "--"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">
+                        vs. Mean
+                      </p>
+                      <p className={`font-medium font-mono ${gapFromMean !== null && gapFromMean > 0 ? "text-green-600" : gapFromMean !== null && gapFromMean < 0 ? "text-red-500" : ""}`}>
+                        {gapFromMean !== null
+                          ? `${gapFromMean > 0 ? "+" : ""}${gapFromMean.toFixed(1)}`
+                          : "--"}
                       </p>
                     </div>
                     <div>

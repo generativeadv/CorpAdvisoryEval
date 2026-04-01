@@ -24,6 +24,14 @@ export default async function DashboardPage() {
     ? Math.max(...evaluated.map((f) => f.evaluation?.maturityStage ?? 0))
     : 0;
 
+  // Distribution stats
+  const allScores = evaluated.map((f) => f.evaluation!.compositeScoreWeighted).sort((a, b) => a - b);
+  const sd = allScores.length > 0
+    ? Math.sqrt(allScores.reduce((a, b) => a + Math.pow(b - avgScore, 2), 0) / allScores.length)
+    : 0;
+  const q1 = allScores.length > 0 ? allScores[Math.floor(allScores.length * 0.25)] : 0;
+  const q3 = allScores.length > 0 ? allScores[Math.floor(allScores.length * 0.75)] : 0;
+
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-8">
       <div>
@@ -76,6 +84,21 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {evaluated.length > 0 && (
+        <div className="border rounded-lg p-4 bg-muted/20">
+          <p className="text-sm font-medium mb-1">How to read the scores</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            The middle 50% of firms score between {q1} and {q3} (a{" "}
+            {q3 - q1}-point band out of 60). The standard deviation is{" "}
+            {sd.toFixed(1)}, meaning firms need to be roughly{" "}
+            {Math.round(sd)} points apart to be in meaningfully different
+            tiers. Firms within the same quartile are not reliably
+            differentiated by score alone — look to the dimension-level
+            breakdown and confidence grade for sharper distinctions.
+          </p>
+        </div>
+      )}
 
       <div>
         <h2 className="text-lg font-semibold mb-4">Summary Matrix</h2>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import {
   Table,
@@ -16,25 +16,51 @@ import { Badge } from "@/components/ui/badge";
 import {
   ARCHETYPE_LABELS,
   type FirmWithEvaluation,
-  type MaturityStage,
   type ConfidenceGrade,
   type Archetype,
 } from "@/lib/types";
 import { GROUP_LABELS } from "@/lib/firms";
 import { ArrowUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type SortField =
   | "name"
   | "group"
   | "maturity"
   | "score"
+  | "percentile"
   | "confidence"
   | "archetype";
+
+function computeStats(firms: FirmWithEvaluation[]) {
+  const scores = firms
+    .filter((f) => f.evaluation)
+    .map((f) => f.evaluation!.compositeScoreWeighted);
+  if (scores.length === 0) return { mean: 0, percentiles: new Map<string, number>(), gaps: new Map<string, number>() };
+
+  const n = scores.length;
+  const mean = scores.reduce((a, b) => a + b, 0) / n;
+
+  const percentiles = new Map<string, number>();
+  const gaps = new Map<string, number>();
+
+  firms.forEach((f) => {
+    if (!f.evaluation) return;
+    const score = f.evaluation.compositeScoreWeighted;
+    const below = scores.filter((s) => s < score).length;
+    percentiles.set(f.slug, Math.round((below / (n - 1)) * 100));
+    gaps.set(f.slug, Math.round((score - mean) * 10) / 10);
+  });
+
+  return { mean, percentiles, gaps };
+}
 
 export function SummaryMatrix({ firms }: { firms: FirmWithEvaluation[] }) {
   const [sortField, setSortField] = useState<SortField>("score");
   const [sortAsc, setSortAsc] = useState(false);
   const [filterGroup, setFilterGroup] = useState<number | null>(null);
+
+  const { percentiles, gaps } = useMemo(() => computeStats(firms), [firms]);
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) setSortAsc(!sortAsc);
@@ -66,6 +92,11 @@ export function SummaryMatrix({ firms }: { firms: FirmWithEvaluation[] }) {
           dir *
           ((a.evaluation?.compositeScoreWeighted ?? 0) -
             (b.evaluation?.compositeScoreWeighted ?? 0))
+        );
+      case "percentile":
+        return (
+          dir *
+          ((percentiles.get(a.slug) ?? 0) - (percentiles.get(b.slug) ?? 0))
         );
       case "confidence": {
         const gradeOrder = { A: 4, B: 3, C: 2, D: 1 };
@@ -126,73 +157,113 @@ export function SummaryMatrix({ firms }: { firms: FirmWithEvaluation[] }) {
               <SortHeader field="name">Firm</SortHeader>
               <SortHeader field="group">Group</SortHeader>
               <SortHeader field="maturity">Maturity</SortHeader>
-              <SortHeader field="score">Weighted Score</SortHeader>
+              <SortHeader field="score">Score</SortHeader>
+              <SortHeader field="percentile">Percentile</SortHeader>
+              <TableHead className="text-xs text-muted-foreground">vs. Mean</TableHead>
               <SortHeader field="confidence">Confidence</SortHeader>
               <TableHead>Archetype</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sorted.map((firm) => (
-              <TableRow key={firm.slug}>
-                <TableCell>
-                  <Link
-                    href={`/firms/${firm.slug}`}
-                    className="font-medium hover:underline"
-                  >
-                    {firm.name}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <span
-                    className="text-xs text-muted-foreground"
-                    title={GROUP_LABELS[firm.group]}
-                  >
-                    {firm.group}
-                  </span>
-                </TableCell>
-                <TableCell>
-                  {firm.evaluation ? (
-                    <MaturityBadge stage={firm.evaluation.maturityStage} />
-                  ) : (
-                    <span className="text-muted-foreground text-sm">--</span>
-                  )}
-                </TableCell>
-                <TableCell>
-                  {firm.evaluation ? (
-                    <span className="font-mono font-medium">
-                      {firm.evaluation.compositeScoreWeighted.toFixed(1)}
+            {sorted.map((firm) => {
+              const pctl = percentiles.get(firm.slug);
+              const gap = gaps.get(firm.slug);
+              return (
+                <TableRow key={firm.slug}>
+                  <TableCell>
+                    <Link
+                      href={`/firms/${firm.slug}`}
+                      className="font-medium hover:underline"
+                    >
+                      {firm.name}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <span
+                      className="text-xs text-muted-foreground"
+                      title={GROUP_LABELS[firm.group]}
+                    >
+                      {firm.group}
                     </span>
-                  ) : (
-                    "--"
-                  )}
-                </TableCell>
-                <TableCell>
-                  {firm.evaluation ? (
-                    <ConfidenceBadge
-                      grade={firm.evaluation.confidenceGrade}
-                    />
-                  ) : (
-                    "--"
-                  )}
-                </TableCell>
-                <TableCell>
-                  {firm.evaluation ? (
-                    <span className="text-sm">
-                      {
-                        ARCHETYPE_LABELS[
-                          firm.evaluation.archetype as Archetype
-                        ]
-                      }
-                    </span>
-                  ) : (
-                    "--"
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+                  </TableCell>
+                  <TableCell>
+                    {firm.evaluation ? (
+                      <MaturityBadge stage={firm.evaluation.maturityStage} />
+                    ) : (
+                      <span className="text-muted-foreground text-sm">--</span>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {firm.evaluation ? (
+                      <span className="font-mono font-medium">
+                        {firm.evaluation.compositeScoreWeighted.toFixed(1)}
+                      </span>
+                    ) : (
+                      "--"
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {pctl !== undefined ? (
+                      <span className="text-xs font-mono text-muted-foreground">
+                        {pctl}th
+                      </span>
+                    ) : (
+                      "--"
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {gap !== undefined ? (
+                      <span
+                        className={cn(
+                          "text-xs font-mono",
+                          gap > 0
+                            ? "text-green-600"
+                            : gap < 0
+                              ? "text-red-500"
+                              : "text-muted-foreground"
+                        )}
+                      >
+                        {gap > 0 ? "+" : ""}
+                        {gap.toFixed(1)}
+                      </span>
+                    ) : (
+                      "--"
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {firm.evaluation ? (
+                      <ConfidenceBadge
+                        grade={firm.evaluation.confidenceGrade}
+                      />
+                    ) : (
+                      "--"
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {firm.evaluation ? (
+                      <span className="text-sm">
+                        {
+                          ARCHETYPE_LABELS[
+                            firm.evaluation.archetype as Archetype
+                          ]
+                        }
+                      </span>
+                    ) : (
+                      "--"
+                    )}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>
+      <p className="text-xs text-muted-foreground mt-3">
+        Percentile shows where each firm ranks relative to all evaluated firms.
+        Firms within the same quartile (e.g., 40th–60th percentile) are not
+        meaningfully differentiated by score alone. &ldquo;vs. Mean&rdquo; shows
+        the gap from the average weighted score across all firms.
+      </p>
     </div>
   );
 }
