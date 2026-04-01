@@ -72,18 +72,8 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
     (f) => (f.evaluation?.maturityStage ?? 0) <= 2
   );
 
-  const leading = sorted.filter(
-    (f) => (f.evaluation?.maturityStage ?? 0) >= 5
-  );
-
   const group1 = sorted.filter((f) => f.group === 1);
-  const group3 = sorted.filter((f) => f.group === 3);
   const fgs = coreFirms.find((f) => f.slug === "fgs-global");
-
-  // Distribution stats
-  const allScores = coreFirms.filter((f) => f.evaluation).map((f) => f.evaluation!.compositeScoreWeighted).sort((a, b) => a - b);
-  const mean = allScores.length > 0 ? allScores.reduce((a, b) => a + b, 0) / allScores.length : 0;
-  const sd = allScores.length > 0 ? Math.sqrt(allScores.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / allScores.length) : 0;
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col">
@@ -150,17 +140,13 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
                     </p>
                     <p>
                       But fewer have made the engineering and commercial
-                      investments that translate positioning into capability
+                      investments that translate positioning into verified
+                      capability
                     </p>
                     <p className="text-gray-500 text-xs">
-                      {leading.length} Leading &middot;{" "}
-                      {scaling.length - leading.length} Scaling &middot;{" "}
+                      {scaling.length} firms at Scaling or Leading &middot;{" "}
                       {formalizing.length} Formalizing &middot;{" "}
-                      {early.length} Early
-                    </p>
-                    <p className="text-gray-500 text-xs">
-                      SD of {sd.toFixed(1)} &mdash; firms need ~{Math.round(sd)}pts
-                      apart to be in different tiers
+                      {early.length} Early stage
                     </p>
                   </div>
                 </div>
@@ -344,25 +330,25 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
                   {
                     num: "1",
                     headline: "Past experimentation, not yet mature",
-                    body: `Most advisory firms are formalizing or scaling. The ${leading.length} management consulting firms (McKinsey, BCG, Accenture Song) set a ceiling at Stage 5 that the field has not yet reached.`,
+                    body: "Most firms are formalizing or scaling. Only one has reached Leading with measurable AI revenue and published case studies.",
                   },
                   {
                     num: "2",
                     headline:
                       "Proprietary tech is the strongest differentiator",
-                    body: "Firms that build their own platforms and hire engineers outperform those relying on positioning. The gap between narrative and infrastructure is the defining fault line.",
+                    body: "Firms that build their own platforms and hire engineers outperform those relying on positioning and third-party tools.",
                   },
                   {
                     num: "3",
                     headline:
                       "FGS has the most complete posture among advisory peers",
-                    body: "Named practice, proprietary platform (Fergus), targeted acquisition (Memetica), and dedicated engineering team (FGS Labs) — rare breadth for an advisory-scale firm.",
+                    body: "Named practice, proprietary platform, targeted acquisition, and dedicated engineering team — rare breadth for an advisory-scale firm.",
                   },
                   {
                     num: "4",
                     headline:
-                      "Four groups reflect different competitive dynamics",
-                    body: "Mgmt consulting sets the ceiling. PR networks benefit from holding company tech. Advisory firms build independently. Score differences within the middle 50% are not reliable differentiators.",
+                      "Group structure creates different competitive dynamics",
+                    body: "PR networks benefit from holding company tech investments. Independent advisory firms must build AI capability from their own resource base.",
                   },
                   {
                     num: "5",
@@ -374,7 +360,7 @@ export function SlideViewer({ firms }: { firms: FirmWithEvaluation[] }) {
                     num: "6",
                     headline:
                       "The landscape is moving fast",
-                    body: "Multiple firms have made major AI moves in the past six months. Positions may shift materially within 2–3 quarters. Semi-annual reassessment recommended.",
+                    body: "Multiple firms have made major AI moves in the past six months. Relative positions may shift materially within 2–3 quarters.",
                   },
                 ].map((obs) => (
                   <div key={obs.num} className="flex gap-3">

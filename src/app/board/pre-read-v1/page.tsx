@@ -86,14 +86,6 @@ export default async function PreReadPage() {
     day: "numeric",
   });
 
-  // Distribution stats
-  const allScores = coreFirms.map((f) => f.evaluation!.compositeScoreWeighted).sort((a, b) => a - b);
-  const sd = allScores.length > 0
-    ? Math.sqrt(allScores.reduce((a, b) => a + Math.pow(b - avgWeighted, 2), 0) / allScores.length)
-    : 0;
-  const q1 = allScores.length > 0 ? allScores[Math.floor(allScores.length * 0.25)] : 0;
-  const q3 = allScores.length > 0 ? allScores[Math.floor(allScores.length * 0.75)] : 0;
-
   // FGS-specific data
   const fgsE = fgs?.evaluation;
   const fgsDims = fgsE ? getDimensionScores(fgsE) : [];
@@ -104,11 +96,6 @@ export default async function PreReadPage() {
   // Group 1 ranking for FGS
   const group1Sorted = sorted.filter((f) => f.group === 1);
   const fgsGroup1Rank = fgs ? group1Sorted.findIndex((f) => f.slug === "fgs-global") + 1 : 0;
-
-  // Group breakdowns
-  const group3Firms = sorted.filter((f) => f.group === 3);
-  const group2Firms = sorted.filter((f) => f.group === 2);
-  const group4Firms = sorted.filter((f) => f.group === 4);
 
   return (
     <div>
@@ -182,12 +169,9 @@ export default async function PreReadPage() {
               ambitions and those that have built the engineering
               infrastructure, commercial offerings, and organizational
               structures to deliver on them. The sector&rsquo;s average
-              weighted score is {avgWeighted.toFixed(1)} out of 60, with a
-              standard deviation of {sd.toFixed(1)} &mdash; meaning firms
-              need to be roughly {Math.round(sd)} points apart to be in
-              meaningfully different tiers. The middle 50% of firms score
-              between {q1} and {q3}, a {q3 - q1}-point band in which
-              individual ranking differences should be treated with caution.
+              maturity is {avgMaturity.toFixed(1)} out of 5 &mdash; firmly in
+              the formalizing-to-scaling range, with considerable variance
+              between the leaders and the field.
             </p>
             <p>
               The clearest pattern across the assessment is that firms which
@@ -203,18 +187,6 @@ export default async function PreReadPage() {
               fault line in the sector today.
             </p>
             <p>
-              The three management consulting firms in the assessment
-              &mdash; McKinsey (via QuantumBlack), BCG, and Accenture
-              Song &mdash; score at or near the top of the field, all
-              reaching Stage 5 (Leading). This is unsurprising given their
-              massive engineering organizations, deep AI partnerships (with
-              the likes of Anthropic, Google, and Microsoft), and verifiable
-              commercial AI revenue. They set a ceiling against which the
-              advisory and communications firms can be measured, but direct
-              comparison should account for the fundamentally different
-              resource base and business model.
-            </p>
-            <p>
               Among Group 1 firms (corporate advisory and strategic
               communications), FGS Global has assembled the most complete AI
               posture: a dedicated AI Advisory practice, a proprietary
@@ -228,11 +200,15 @@ export default async function PreReadPage() {
               advisory heritage.
             </p>
             <p>
-              The global PR networks (Weber Shandwick, Edelman, Burson,
-              FleishmanHillard) benefit from parent-company technology
-              investments and larger engineering organizations, which gives
-              them structural advantages in platform development and scale
-              that independent advisory firms must build on their own.
+              The larger PR holding company networks (Weber Shandwick,
+              Edelman, Burson, FleishmanHillard) benefit from parent-company
+              technology investments and larger engineering organizations,
+              which gives them structural advantages in platform development
+              and scale. Accenture Song operates in a different category
+              entirely, with the deepest technology bench, the broadest AI
+              service lines, and verifiable commercial AI revenue &mdash;
+              though its inclusion here serves primarily as a ceiling
+              reference rather than a direct peer comparison.
             </p>
             <p>
               Evidence confidence across the assessment is strong:{" "}
@@ -252,46 +228,25 @@ export default async function PreReadPage() {
           </h2>
           <div className="text-sm leading-relaxed space-y-4">
             <p>
-              <span className="font-bold font-sans">
-                Management consulting (the ceiling).
-              </span>{" "}
-              {group3Firms.map((f) => f.shortName).join(", ")} all reach
-              Stage 5 (Leading) with scores of{" "}
-              {group3Firms
-                .map((f) => f.evaluation!.compositeScoreWeighted.toFixed(1))
-                .join(", ")}{" "}
-              respectively. These firms have massive engineering
-              organizations, deep AI partnerships, proprietary platforms at
-              enterprise scale, and published case studies with quantified
-              results. McKinsey&rsquo;s QuantumBlack operates as a dedicated
-              AI and advanced analytics arm with thousands of specialists;
-              BCG&rsquo;s AI-at-Scale offerings through BCG X have been
-              deployed across hundreds of client engagements; Accenture
-              Song brings the deepest technology bench of any firm in the
-              assessment. These scores set a ceiling rather than a peer
-              benchmark for the advisory and communications firms.
-            </p>
-            <p>
-              <span className="font-bold font-sans">
-                FGS Global and the advisory leaders.
-              </span>{" "}
+              <span className="font-bold font-sans">The leaders.</span>{" "}
+              {sorted[0]?.shortName} stands apart as the most advanced firm
+              in the assessment, with deep proprietary technology, a large
+              engineering organization, and identifiable commercial AI
+              revenue. Among the communications-focused firms,{" "}
+              {sorted[1]?.shortName} has made significant strides in
+              embedding AI across its service delivery and building
+              client-facing AI capabilities at scale.{" "}
               {fgsE && (
                 <>
-                  Among Group 1 firms (corporate advisory), FGS Global has
-                  built what is arguably the most coherent AI strategy among
-                  the pure-play advisory firms &mdash; combining a launched
-                  AI Advisory practice, the Fergus platform deployed
-                  firm-wide, the Memetica acquisition for AI-driven threat
-                  intelligence, and an engineering team actively hiring
-                  across New York, Washington, London, and Berlin. FGS ranks{" "}
-                  {fgsGroup1Rank === 1 ? "first" : `#${fgsGroup1Rank}`} in
-                  Group 1 at the {Math.round(
-                    (allScores.filter((s) => s < fgsE.compositeScoreWeighted).length /
-                      (allScores.length - 1)) * 100
-                  )}th percentile overall. The question for FGS is whether
-                  its advisory-scale resources can sustain the pace of
-                  investment needed to stay ahead of larger competitors with
-                  deeper technology benches.
+                  FGS Global has built what is arguably the most coherent AI
+                  strategy among the pure-play advisory firms &mdash;
+                  combining a launched AI Advisory practice, the Fergus
+                  platform deployed firm-wide, the Memetica acquisition for
+                  AI-driven threat intelligence, and an engineering team
+                  actively hiring across New York, Washington, London, and
+                  Berlin. The question for FGS is whether its advisory-scale
+                  resources can sustain the pace of investment needed to stay
+                  ahead of larger competitors with deeper technology benches.
                 </>
               )}
             </p>
@@ -299,45 +254,31 @@ export default async function PreReadPage() {
               <span className="font-bold font-sans">
                 The scaling middle.
               </span>{" "}
-              A cluster of firms &mdash; including{" "}
-              {sorted
-                .filter(
-                  (f) =>
-                    f.evaluation?.maturityStage === 4 &&
-                    f.group !== 3 &&
-                    f.slug !== "fgs-global"
-                )
-                .slice(0, 5)
-                .map((f) => f.shortName)
-                .join(", ")}{" "}
-              &mdash; have reached Stage 4 (Scaling), with proprietary
-              platforms in production, dedicated AI leadership, and active
-              client-facing practices. These firms score between {q1} and{" "}
-              {q3} (the interquartile range), meaning their relative
-              positioning within this band should be interpreted with
-              caution &mdash; a 3-point difference at this level is within
-              scoring noise. The global PR networks benefit from holding
-              company resources (WPP for Burson and FleishmanHillard; IPG
-              for Weber Shandwick), which provide access to shared technology
-              platforms that independent advisory firms must build on their
-              own.
+              A cluster of firms &mdash; including Edelman, Burson, APCO,
+              Penta, and FleishmanHillard &mdash; have reached Stage 4
+              (Scaling), with proprietary platforms in production, dedicated
+              AI leadership, and active client-facing practices. These firms
+              have moved beyond experimentation into sustained organizational
+              commitment, though the depth of their engineering investment
+              and commercial traction varies. Several benefit from holding
+              company resources (WPP in the case of Burson and
+              FleishmanHillard; IPG for Weber Shandwick), which provide
+              access to shared technology platforms and data infrastructure
+              that independent advisory firms must build on their own.
             </p>
             <p>
               <span className="font-bold font-sans">
                 The formalizing tier.
               </span>{" "}
-              {sorted
-                .filter((f) => f.evaluation?.maturityStage === 3)
-                .map((f) => f.shortName)
-                .join(", ")}{" "}
-              have all taken meaningful steps &mdash; appointing AI leaders,
-              launching internal pilots, or producing regular thought
-              leadership &mdash; but have not yet demonstrated the
-              proprietary tooling, engineering depth, or commercial proof
-              points that characterize the scaling firms. For several of
-              these firms, the gap is less about ambition than about the
-              infrastructure and talent investment required to move from
-              strategy to execution.
+              Teneo, FTI&rsquo;s Strategic Communications group, Brunswick,
+              H/Advisors, Kekst, and Orchestra have all taken meaningful
+              steps &mdash; appointing AI leaders, launching internal pilots,
+              or producing regular thought leadership &mdash; but have not
+              yet demonstrated the proprietary tooling, engineering depth, or
+              commercial proof points that characterize the scaling firms.
+              For several of these firms, the gap is less about ambition than
+              about the infrastructure and talent investment required to move
+              from strategy to execution.
             </p>
             <p>
               <span className="font-bold font-sans">
@@ -435,19 +376,16 @@ export default async function PreReadPage() {
             </p>
             <p>
               <span className="font-bold font-sans">
-                4. The four group structure reflects fundamentally different
-                competitive dynamics.
+                4. Group structure reflects different competitive dynamics.
               </span>{" "}
-              Group 1 firms ({GROUP_LABELS[1]}), Group 2 ({GROUP_LABELS[2]}),
-              Group 3 ({GROUP_LABELS[3]}), and Group 4 ({GROUP_LABELS[4]})
-              each approach AI from different
-              business models and resource bases. The management consulting
-              firms (Group 3) set a ceiling with enterprise-scale AI
-              organizations. The global PR networks (Group 2) benefit from
-              holding company technology investments. Group 1 advisory firms
-              are building capability independently at advisory scale. Direct
-              cross-group comparisons should account for these structural
-              differences.
+              Group 1 firms ({GROUP_LABELS[1]}) and Group 2 firms (
+              {GROUP_LABELS[2]}) approach AI from fundamentally different
+              business models and resource bases. Group 2 firms, particularly
+              the larger PR networks, tend to benefit from parent company
+              technology investments and larger scale, while Group 1 firms
+              are building capability more independently within
+              advisory-scale organizations. Direct cross-group comparisons
+              should account for these structural differences.
             </p>
             <p>
               <span className="font-bold font-sans">
