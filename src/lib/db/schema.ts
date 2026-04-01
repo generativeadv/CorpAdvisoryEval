@@ -34,9 +34,9 @@ export const evaluations = sqliteTable("evaluations", {
   dim2: integer("dim2_proprietary_tech").notNull(),
   dim3: integer("dim3_leadership_governance").notNull(),
   dim4: integer("dim4_technical_talent").notNull(),
-  dim5: integer("dim5_partnerships").notNull(),
+  dim5: integer("dim5_partnerships").notNull(), // Now: AI Partnerships, Acquisitions & Ecosystem
   dim6: integer("dim6_thought_leadership").notNull(),
-  dim7: integer("dim7_acquisitions").notNull(),
+  dim7: integer("dim7_acquisitions").notNull(), // Now: Case Studies & Evidence
   dim8: integer("dim8_internal_adoption").notNull(),
   dim9: integer("dim9_commercial_momentum").notNull(),
   dim10: integer("dim10_strategic_coherence").notNull(),

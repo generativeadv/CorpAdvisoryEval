@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { WEIGHTED_DIMENSIONS } from "@/lib/types";
-import { ArrowLeft, ChevronDown, Target, Cpu, Brain, Wrench, Handshake, Megaphone, ShoppingCart, Zap, TrendingUp, Compass } from "lucide-react";
+import { ArrowLeft, ChevronDown, Target, Cpu, Brain, Wrench, Handshake, Megaphone, Award, Zap, TrendingUp, Compass } from "lucide-react";
 import Link from "next/link";
 
 const DIMENSIONS: { name: string; icon: React.ElementType; anchors: { score: number; label: string }[] }[] = [
@@ -11,9 +11,9 @@ const DIMENSIONS: { name: string; icon: React.ElementType; anchors: { score: num
   { name: "Proprietary AI Technology", icon: Cpu, anchors: [{ score: 1, label: "No evidence" }, { score: 2, label: "Generic \u201Cusing AI\u201D claims" }, { score: 3, label: "Named internal tool in dev" }, { score: 4, label: "Platform in production" }, { score: 5, label: "Platform at scale + client products" }] },
   { name: "AI Leadership & Governance", icon: Brain, anchors: [{ score: 1, label: "No named AI leader" }, { score: 2, label: "AI in broader mandate" }, { score: 3, label: "Dedicated AI leader" }, { score: 4, label: "Leader + org structure" }, { score: 5, label: "Full leadership + governance" }] },
   { name: "Technical Talent & Engineering", icon: Wrench, anchors: [{ score: 1, label: "No evidence" }, { score: 2, label: "1\u20132 roles evident" }, { score: 3, label: "Small team (3\u201310), hiring" }, { score: 4, label: "Established team (10\u201330)" }, { score: 5, label: "Large org (30+) with leads" }] },
-  { name: "AI Partnerships & Ecosystem", icon: Handshake, anchors: [{ score: 1, label: "None identified" }, { score: 2, label: "Generic vendor relationships" }, { score: 3, label: "1\u20132 named partnerships" }, { score: 4, label: "Multiple strategic partnerships" }, { score: 5, label: "Deep alliances, major players" }] },
+  { name: "AI Partnerships, Acquisitions & Ecosystem", icon: Handshake, anchors: [{ score: 1, label: "None identified" }, { score: 2, label: "Generic vendors or adjacent M&A" }, { score: 3, label: "1\u20132 named partnerships or 1 AI acquisition" }, { score: 4, label: "Multiple partnerships and/or acquisitions" }, { score: 5, label: "Deep alliances + targeted M&A program" }] },
   { name: "Thought Leadership & Content", icon: Megaphone, anchors: [{ score: 1, label: "None" }, { score: 2, label: "Occasional mentions" }, { score: 3, label: "Regular AI content" }, { score: 4, label: "Dedicated content franchise" }, { score: 5, label: "Industry-recognized, original research" }] },
-  { name: "Acquisitions & Investment", icon: ShoppingCart, anchors: [{ score: 1, label: "None" }, { score: 2, label: "Adjacent acquisitions" }, { score: 3, label: "1 AI-relevant acquisition" }, { score: 4, label: "Multiple AI/data acquisitions" }, { score: 5, label: "Strategic M&A program" }] },
+  { name: "Case Studies & Evidence", icon: Award, anchors: [{ score: 1, label: "No published proof points" }, { score: 2, label: "Vague AI success references" }, { score: 3, label: "1\u20132 named examples" }, { score: 4, label: "Multiple case studies or outcomes" }, { score: 5, label: "Extensive evidence, named clients, quantified" }] },
   { name: "Internal AI Adoption", icon: Zap, anchors: [{ score: 1, label: "No evidence" }, { score: 2, label: "Generic claims" }, { score: 3, label: "Named tools, some adoption" }, { score: 4, label: "Platform at scale + training" }, { score: 5, label: "Deeply embedded, measurable" }] },
   { name: "Commercial Momentum", icon: TrendingUp, anchors: [{ score: 1, label: "No evidence" }, { score: 2, label: "Announced, no traction" }, { score: 3, label: "Hiring client-facing roles" }, { score: 4, label: "Indirect engagement evidence" }, { score: 5, label: "Named clients or AI revenue" }] },
   { name: "Strategic Coherence", icon: Compass, anchors: [{ score: 1, label: "No strategy" }, { score: 2, label: "Scattered activities" }, { score: 3, label: "Emerging coherence" }, { score: 4, label: "Clear connected strategy" }, { score: 5, label: "Fully integrated, board-level" }] },
