@@ -41,7 +41,7 @@ export default async function DashboardPage() {
         <div className="border rounded-lg p-4">
           <p className="text-sm text-muted-foreground">Avg Weighted Score</p>
           <p className="text-3xl font-bold">{avgScore.toFixed(1)}</p>
-          <p className="text-xs text-muted-foreground">out of 56</p>
+          <p className="text-xs text-muted-foreground">out of 60</p>
         </div>
         <div className="border rounded-lg p-4">
           <p className="text-sm text-muted-foreground">Highest Maturity</p>

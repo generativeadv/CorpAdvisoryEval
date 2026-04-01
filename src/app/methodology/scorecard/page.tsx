@@ -79,7 +79,7 @@ export default function ScorecardPage() {
           <p className="text-xs text-muted-foreground">Max unweighted</p>
         </div>
         <div>
-          <p className="text-2xl font-bold">56</p>
+          <p className="text-2xl font-bold">60</p>
           <p className="text-xs text-muted-foreground">Max weighted (1.5x on dims 1, 2, 4, 9)</p>
         </div>
       </div>

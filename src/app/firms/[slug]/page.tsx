@@ -85,7 +85,7 @@ export default async function FirmDetailPage({
                         Weighted Score
                       </p>
                       <p className="font-medium font-mono">
-                        {evaluation.compositeScoreWeighted.toFixed(1)} / 56
+                        {evaluation.compositeScoreWeighted.toFixed(1)} / 60
                       </p>
                     </div>
                     <div>
@@ -169,7 +169,7 @@ export default async function FirmDetailPage({
                     Weighted Score (1.5x on dims 1,2,4,9)
                   </p>
                   <p className="text-2xl font-bold font-mono">
-                    {evaluation.compositeScoreWeighted.toFixed(1)} / 56
+                    {evaluation.compositeScoreWeighted.toFixed(1)} / 60
                   </p>
                 </div>
               </div>

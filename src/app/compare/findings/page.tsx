@@ -79,7 +79,7 @@ export default async function FindingsPage() {
     },
     {
       title: `${topFirm.name} leads the field`,
-      body: `With a weighted composite score of ${topFirm.evaluation!.compositeScoreWeighted.toFixed(1)} out of 56, ${topFirm.shortName} ranks highest overall. The average weighted score is ${avgWeighted.toFixed(1)}.`,
+      body: `With a weighted composite score of ${topFirm.evaluation!.compositeScoreWeighted.toFixed(1)} out of 60, ${topFirm.shortName} ranks highest overall. The average weighted score is ${avgWeighted.toFixed(1)}.`,
     },
     {
       title: `${strongestDim.name} is the sector's strongest dimension`,
