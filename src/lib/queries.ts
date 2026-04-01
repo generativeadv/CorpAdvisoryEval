@@ -44,7 +44,7 @@ export async function getAllFirmsWithEvaluations(): Promise<
       slug: firm.slug,
       name: firm.name,
       shortName: firm.shortName,
-      group: firm.group as 1 | 2 | 3,
+      group: firm.group as 1 | 2 | 3 | 4,
       evaluation: evaluation
         ? {
             id: evaluation.id,

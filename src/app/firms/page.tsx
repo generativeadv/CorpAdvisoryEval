@@ -16,7 +16,7 @@ export default async function FirmsPage() {
         </p>
       </div>
 
-      {([1, 2, 3] as const).map((group) => {
+      {([1, 2, 3, 4] as const).map((group) => {
         const groupFirms = firms.filter((f) => f.group === group);
         return (
           <div key={group}>

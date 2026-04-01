@@ -44,7 +44,7 @@ async function generateOne(firmName: string, shortName: string, slug: string): P
   const start = Date.now();
 
   try {
-    const prompt = buildResearchPrompt(firmName, shortName);
+    const prompt = buildResearchPrompt(firmName, shortName, slug);
 
     // Fire off the request
     const response = await openai.responses.create({

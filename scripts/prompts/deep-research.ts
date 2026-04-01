@@ -1,14 +1,24 @@
 /**
+ * Firm-specific research context that gets prepended to the standard prompt.
+ */
+const FIRM_CONTEXT: Record<string, string> = {
+  "mckinsey-quantumblack": `IMPORTANT RESEARCH FOCUS: This research should focus specifically on McKinsey's QuantumBlack division — McKinsey's AI and advanced analytics arm. QuantumBlack is the primary vehicle through which McKinsey delivers AI capabilities, products, and advisory services. Investigate QuantumBlack's offerings, proprietary tools (e.g., QuantumBlack Labs, any named AI products), team structure, leadership, and how it integrates with McKinsey's broader consulting practice. Also examine how McKinsey consultants outside QuantumBlack are using AI internally for productivity and delivery. Do not attempt to cover all of McKinsey's consulting practice — focus on the AI-specific capability centered in QuantumBlack.`,
+  "bcg": `IMPORTANT RESEARCH FOCUS: This research should focus on BCG's AI capabilities as presented at https://www.bcg.com/capabilities/artificial-intelligence and related BCG offerings. Pay particular attention to BCG X (the firm's tech build and design unit), BCG's AI-at-Scale offerings, and any proprietary AI tools or platforms. Also specifically investigate the work and public commentary of Russell Dubner, BCG's Chief Communications Officer, regarding AI's role in communications, reputation, and advisory — his perspective is relevant to how BCG positions AI in the communications and advisory context that this assessment covers. Examine BCG's AI partnerships (e.g., with Anthropic, Google, others), published case studies, and how AI is embedded in BCG's internal operations.`,
+};
+
+/**
  * Builds the deep research prompt for a given firm.
  * Replaces "FGS Global" / "FGS" references with the target firm name.
  */
 export function buildResearchPrompt(
   firmName: string,
-  firmShortName?: string
+  firmShortName?: string,
+  firmSlug?: string
 ): string {
   const short = firmShortName || firmName;
+  const context = firmSlug && FIRM_CONTEXT[firmSlug] ? `\n\n${FIRM_CONTEXT[firmSlug]}\n\n` : " ";
 
-  return `Research Question: What is ${firmName}, the corporate advisory firm, doing with AI internally and with clients? Produce a comprehensive, evidence-based fact base analyzing ${short}'s AI strategy, capabilities, organizational structure, partnerships, and market positioning from January 1, 2023 to present. Context: This research supports a board-level competitive analysis of how major advisory, communications, and consulting firms are deploying AI. This deliverable focuses exclusively on ${short}—do not compare to other firms unless necessary to clarify what ${short} is doing. This is a stand-alone fact base, not a strategic recommendation document. Core Research Objectives:
+  return `Research Question: What is ${firmName}, the corporate advisory firm, doing with AI internally and with clients?${context} Produce a comprehensive, evidence-based fact base analyzing ${short}'s AI strategy, capabilities, organizational structure, partnerships, and market positioning from January 1, 2023 to present. Context: This research supports a board-level competitive analysis of how major advisory, communications, and consulting firms are deploying AI. This deliverable focuses exclusively on ${short}—do not compare to other firms unless necessary to clarify what ${short} is doing. This is a stand-alone fact base, not a strategic recommendation document. Core Research Objectives:
 1. AI Advisory & Client-Facing Offerings • Does ${short} have an AI advisory offering, AI-related practice, AI-enabled service line, or AI-specific client proposition? • What exactly does it offer? Which client problems is it solving with AI? • What evidence or proof points does it cite proving its capabilities, if any?
 2. Internal AI Usage • How is ${short} using AI to optimize workforce, operating model, research, analysis, content creation, workflows, knowledge management, reporting, or delivery? • Evidence of internal tooling, productivity enablement, workflow redesign, proprietary systems, or structured employee adoption? • Evidence of governance, training, policy, or responsible AI controls?
 3. AI Organizational Structure • What is ${short}'s AI-related leadership structure? • Is there a Chief AI Officer, Chief Digital Officer, Chief Innovation Officer, Chief Technology Officer, Head of Data/AI, Head of Innovation, or equivalent? If there are multiple people with similar roles, document them all. • Which teams, offices, or business units own AI strategy internally and externally? • Named senior leaders repeatedly associated with AI, data, digital transformation, technology strategy, or AI-enabled advisory? • What job postings for roles relating to AI or data from October 2025-present are available? What are the roles for? • What evidence is there that there is a team of software engineers, data scientists, and related in-house technical talent? Is there only a senior person or is there evidence of a broader team?

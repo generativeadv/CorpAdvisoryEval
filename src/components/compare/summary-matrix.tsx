@@ -108,7 +108,7 @@ export function SummaryMatrix({ firms }: { firms: FirmWithEvaluation[] }) {
         >
           All ({firms.length})
         </Badge>
-        {([1, 2, 3] as const).map((g) => (
+        {([1, 2, 3, 4] as const).map((g) => (
           <Badge
             key={g}
             variant={filterGroup === g ? "default" : "outline"}

@@ -88,7 +88,7 @@ export interface FirmWithEvaluation {
   slug: string;
   name: string;
   shortName: string;
-  group: 1 | 2 | 3;
+  group: 1 | 2 | 3 | 4;
   evaluation: Evaluation | null;
 }
 
