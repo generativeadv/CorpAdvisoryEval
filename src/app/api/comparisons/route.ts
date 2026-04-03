@@ -7,7 +7,7 @@ import { getFirmBySlug, getFirmReportContent } from "@/lib/queries";
 import { buildComparisonPrompt } from "../../../../scripts/prompts/comparison";
 import { getDimensionScores } from "@/lib/types";
 
-export const maxDuration = 120;
+export const maxDuration = 300;
 
 function makeSlug(firmSlugs: string[]): string {
   return [...firmSlugs].sort().join("_");
@@ -39,7 +39,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ redirect: slug });
     }
     if (existing[0].status === "generating") {
-      return NextResponse.json({ redirect: slug, generating: true });
+      // Check if stale (>5 min) — if so, delete and regenerate
+      const created = new Date(existing[0].createdAt).getTime();
+      const stale = Date.now() - created > 5 * 60 * 1000;
+      if (stale) {
+        await db.delete(comparisons).where(eq(comparisons.slug, slug));
+        // fall through to regenerate
+      } else {
+        return NextResponse.json({ redirect: slug, generating: true });
+      }
+    }
+    if (existing[0].status === "error") {
+      // Allow retry — delete the errored row
+      await db.delete(comparisons).where(eq(comparisons.slug, slug));
     }
   }
 
@@ -87,9 +99,9 @@ async function generateComparison(
     const promptFirms = firmContexts.map((fc) => {
       const f = fc.firm!;
       const e = f.evaluation!;
-      // Trim report to ~5000 words (first ~25000 chars)
+      // Trim report to ~3000 words (first ~15000 chars) to keep under token limits
       const excerpt = fc.report
-        ? fc.report.substring(0, 25000)
+        ? fc.report.substring(0, 15000)
         : "No research report available.";
 
       return {

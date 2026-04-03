@@ -94,7 +94,7 @@ export function ProgressView({
       {/* Time estimate */}
       <div className="text-center space-y-1">
         <p className="text-xs text-muted-foreground">
-          {elapsed}s elapsed · Typically takes 30–60 seconds
+          {elapsed}s elapsed · Typically takes 60–120 seconds
         </p>
         <p className="text-xs text-muted-foreground">
           Claude Opus is analyzing research reports across 10 dimensions
@@ -105,7 +105,7 @@ export function ProgressView({
       <div className="w-64 bg-muted rounded-full h-1.5 overflow-hidden">
         <div
           className="h-full bg-primary rounded-full transition-all duration-1000 ease-linear"
-          style={{ width: `${Math.min(95, (elapsed / 50) * 100)}%` }}
+          style={{ width: `${Math.min(95, (elapsed / 100) * 100)}%` }}
         />
       </div>
     </div>
