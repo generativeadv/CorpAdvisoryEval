@@ -177,8 +177,82 @@ export default function ComparisonPage() {
       )}
 
       {comparison.content && (
-        <div className="prose prose-sm max-w-none dark:prose-invert">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <div className="max-w-none">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h1: ({ children }) => (
+                <h1 className="text-2xl font-bold mt-10 mb-4 pb-3 border-b-2 border-primary/20 first:mt-0">
+                  {children}
+                </h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-xl font-bold mt-10 mb-3 pb-2 border-b border-border first:mt-0">
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-base font-semibold mt-8 mb-2 text-foreground/90">
+                  {children}
+                </h3>
+              ),
+              h4: ({ children }) => (
+                <h4 className="text-sm font-semibold mt-6 mb-1.5 text-foreground/80">
+                  {children}
+                </h4>
+              ),
+              p: ({ children }) => (
+                <p className="text-sm leading-relaxed text-foreground/80 mb-4">
+                  {children}
+                </p>
+              ),
+              ul: ({ children }) => (
+                <ul className="text-sm leading-relaxed text-foreground/80 space-y-2 mb-5 ml-1">
+                  {children}
+                </ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="text-sm leading-relaxed text-foreground/80 space-y-2 mb-5 ml-1 list-decimal list-inside">
+                  {children}
+                </ol>
+              ),
+              li: ({ children }) => (
+                <li className="flex items-start gap-2">
+                  <span className="text-primary/40 mt-1.5 shrink-0 text-[8px]">&#9679;</span>
+                  <span className="flex-1">{children}</span>
+                </li>
+              ),
+              strong: ({ children }) => (
+                <strong className="font-semibold text-foreground">{children}</strong>
+              ),
+              em: ({ children }) => (
+                <em className="italic text-foreground/70">{children}</em>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-3 border-primary/30 pl-4 py-1 my-4 text-sm text-foreground/70 italic">
+                  {children}
+                </blockquote>
+              ),
+              hr: () => <hr className="my-8 border-border/50" />,
+              table: ({ children }) => (
+                <div className="overflow-x-auto my-6 border rounded-lg">
+                  <table className="min-w-full text-xs">{children}</table>
+                </div>
+              ),
+              thead: ({ children }) => (
+                <thead className="bg-muted/50 border-b">{children}</thead>
+              ),
+              th: ({ children }) => (
+                <th className="text-left px-3 py-2 font-semibold text-foreground/70 text-xs">{children}</th>
+              ),
+              td: ({ children }) => (
+                <td className="px-3 py-2 border-b border-border/30 text-foreground/80 text-xs leading-relaxed align-top">{children}</td>
+              ),
+              tr: ({ children }) => (
+                <tr className="hover:bg-muted/30 transition-colors">{children}</tr>
+              ),
+            }}
+          >
             {comparison.content}
           </ReactMarkdown>
         </div>
