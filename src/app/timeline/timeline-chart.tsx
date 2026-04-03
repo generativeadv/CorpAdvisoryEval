@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { cn } from "@/lib/utils";
+import { FileDown } from "lucide-react";
 
 interface TimelineEvent {
   firm: string;
@@ -59,6 +60,25 @@ function generateQuarters(start: string, end: string): string[] {
 
 export function TimelineChart({ events }: { events: TimelineEvent[] }) {
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownloadPptx = async () => {
+    setDownloading(true);
+    try {
+      const { generateTimelinePptx } = await import("@/lib/export-timeline-pptx");
+      const blob = await generateTimelinePptx(events);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "AI-Strategy-Timeline.pptx";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const { chartData, allQuarters, typeCounts, eventsByQuarter } = useMemo(() => {
     // Normalize types
@@ -144,6 +164,18 @@ export function TimelineChart({ events }: { events: TimelineEvent[] }) {
             {t.type} ({t.count})
           </button>
         ))}
+      </div>
+
+      {/* Download */}
+      <div className="flex justify-end">
+        <button
+          onClick={handleDownloadPptx}
+          disabled={downloading}
+          className="inline-flex items-center gap-2 px-4 py-2 border rounded-md text-sm hover:bg-muted transition-colors disabled:opacity-50"
+        >
+          <FileDown size={16} />
+          {downloading ? "Generating..." : "Download .pptx"}
+        </button>
       </div>
 
       {/* Chart */}
