@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { comparisons } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { getAnthropicClient, CLAUDE_MODEL } from "@/lib/anthropic";
+import { getAnthropicClient } from "@/lib/anthropic";
+
+// Use Sonnet for comparisons — Opus times out with 3 full reports in context
+const COMPARISON_MODEL = "claude-sonnet-4-20250514";
 import { getFirmBySlug, getFirmReportContent } from "@/lib/queries";
 import { buildComparisonPrompt } from "../../../../scripts/prompts/comparison";
 import { getDimensionScores } from "@/lib/types";
@@ -116,7 +119,7 @@ async function generateComparison(
     const prompt = buildComparisonPrompt(promptFirms);
 
     const response = await anthropic.messages.create({
-      model: CLAUDE_MODEL,
+      model: COMPARISON_MODEL,
       max_tokens: 8192,
       messages: [{ role: "user", content: prompt }],
     });
