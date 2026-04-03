@@ -7,9 +7,9 @@ import {
   Building2,
   BarChart3,
   FileText,
-  MessageSquare,
   BookOpen,
   Clock,
+  Zap,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -21,6 +21,7 @@ const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/firms", label: "Firms", icon: Building2 },
   { href: "/compare", label: "Compare", icon: BarChart3 },
+  { href: "/custom-compare", label: "Custom Compare", icon: Zap },
   { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board Outputs", icon: FileText },
 ];

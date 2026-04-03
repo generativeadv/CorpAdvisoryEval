@@ -7,9 +7,9 @@ import {
   Building2,
   BarChart3,
   FileText,
-  MessageSquare,
   BookOpen,
   Clock,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/firms", label: "Firms", icon: Building2 },
   { href: "/compare", label: "Compare", icon: BarChart3 },
+  { href: "/custom-compare", label: "Custom", icon: Zap },
   { href: "/timeline", label: "Timeline", icon: Clock },
   { href: "/board", label: "Board", icon: FileText },
 ];

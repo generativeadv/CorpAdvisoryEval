@@ -59,6 +59,19 @@ export const evaluations = sqliteTable("evaluations", {
     .$defaultFn(() => new Date().toISOString()),
 });
 
+export const comparisons = sqliteTable("comparisons", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  slug: text("slug").notNull().unique(), // sorted firm slugs joined by underscore
+  firmSlugs: text("firm_slugs").notNull(), // JSON array
+  firmNames: text("firm_names").notNull(), // display string
+  content: text("content"), // Claude-generated markdown
+  status: text("status").notNull().default("generating"), // "generating" | "complete" | "error"
+  generatedAt: text("generated_at"),
+  createdAt: text("created_at")
+    .notNull()
+    .$defaultFn(() => new Date().toISOString()),
+});
+
 export const chatSessions = sqliteTable("chat_sessions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title"),
