@@ -90,83 +90,53 @@ export async function generateTimelinePptx(
   pptx.author = "Advisory AI Eval";
   pptx.title = "Market Activity Timeline";
 
-  // ====== SLIDE 1: Chart Summary ======
+  // ====== SLIDE 1: Stacked Bar Chart ======
   const slide1 = pptx.addSlide();
 
   slide1.addText("Market Activity Timeline", {
-    x: 0.6, y: 0.3, w: 8, h: 0.3,
+    x: 0.6, y: 0.2, w: 8, h: 0.3,
     fontSize: 10, color: LIGHT_GRAY, fontFace: "Calibri", bold: true,
   });
   slide1.addText(
-    `Aggregate AI-related activity across ${firmCount} firms, ${events.length} events`,
+    `Aggregate AI-related activity across ${firmCount} firms, by type and quarter`,
     {
-      x: 0.6, y: 0.7, w: 12, h: 0.5,
-      fontSize: 20, color: DARK, fontFace: "Calibri", bold: true,
+      x: 0.6, y: 0.55, w: 12, h: 0.4,
+      fontSize: 18, color: DARK, fontFace: "Calibri", bold: true,
     }
   );
 
-  // Type legend
-  typeCounts.forEach((tc, i) => {
-    const x = 0.6 + (i % 3) * 4.2;
-    const y = 1.5 + Math.floor(i / 3) * 0.35;
-    slide1.addShape(pptx.ShapeType.ellipse, {
-      x, y: y + 0.05, w: 0.15, h: 0.15,
-      fill: { color: TYPE_COLORS[tc.type] },
-    });
-    slide1.addText(`${tc.type} (${tc.count})`, {
-      x: x + 0.25, y, w: 3.5, h: 0.25,
-      fontSize: 10, color: GRAY, fontFace: "Calibri",
-    });
-  });
+  // Build chart data series — one series per activity type
+  const chartData: PptxGenJS.OptsChartData[] = types.map((t) => ({
+    name: `${t} (${typeCounts.find((tc) => tc.type === t)?.count || 0})`,
+    labels: allQuarters,
+    values: allQuarters.map(
+      (q) => quarterData.find((d) => d.quarter === q)?.byType[t] || 0
+    ),
+  }));
 
-  // Quarterly activity table
-  const legendRows = Math.ceil(typeCounts.length / 3);
-  const tableY = 1.5 + legendRows * 0.35 + 0.3;
-
-  const headerRow: PptxGenJS.TableRow = [
-    { text: "", options: { fill: { color: "F5F5F5" }, fontSize: 8, bold: true, color: LIGHT_GRAY } },
-    ...allQuarters.map((q) => ({
-      text: q.replace("20", "'"),
-      options: { fill: { color: "F5F5F5" }, fontSize: 7, bold: true, color: LIGHT_GRAY, align: "center" as const },
-    })),
-  ];
-
-  const typeRows: PptxGenJS.TableRow[] = types.map((t) => [
-    {
-      text: t,
-      options: { fontSize: 8, color: GRAY, bold: true },
-    },
-    ...allQuarters.map((q) => {
-      const count = quarterData.find((d) => d.quarter === q)?.byType[t] || 0;
-      return {
-        text: count > 0 ? String(count) : "",
-        options: {
-          fontSize: 8,
-          color: count > 0 ? DARK : "EEEEEE",
-          align: "center" as const,
-          fill: count > 0 ? { color: TYPE_COLORS[t] + "25" } : undefined,
-        },
-      };
-    }),
-  ]);
-
-  const totalRow: PptxGenJS.TableRow = [
-    { text: "Total", options: { fontSize: 8, bold: true, color: DARK } },
-    ...allQuarters.map((q) => ({
-      text: String(quarterData.find((d) => d.quarter === q)?.total || 0),
-      options: { fontSize: 8, bold: true, color: DARK, align: "center" as const },
-    })),
-  ];
-
-  const colW = [1.4, ...allQuarters.map(() => (11.2 / allQuarters.length))];
-
-  slide1.addTable([headerRow, ...typeRows, totalRow], {
-    x: 0.6, y: tableY, w: 12.6,
-    colW,
-    fontSize: 8,
-    border: { type: "solid", pt: 0.5, color: "E5E5E5" },
-    fontFace: "Calibri",
-    valign: "middle",
+  slide1.addChart(pptx.ChartType.bar, chartData, {
+    x: 0.4,
+    y: 1.1,
+    w: 12.4,
+    h: 6.0,
+    barGrouping: "stacked",
+    showTitle: false,
+    showLegend: true,
+    legendPos: "b",
+    legendFontSize: 9,
+    legendColor: GRAY,
+    showValue: false,
+    catAxisOrientation: "minMax",
+    catAxisLabelFontSize: 9,
+    catAxisLabelColor: GRAY,
+    catAxisLineShow: false,
+    valAxisLabelFontSize: 9,
+    valAxisLabelColor: GRAY,
+    valAxisLineShow: false,
+    valGridLine: { color: "E5E7EB", style: "dash", size: 0.5 },
+    valAxisMinVal: 0,
+    chartColors: types.map((t) => TYPE_COLORS[t]),
+    barGapWidthPct: 80,
   });
 
   // ====== SLIDES 2+: Event Detail ======
