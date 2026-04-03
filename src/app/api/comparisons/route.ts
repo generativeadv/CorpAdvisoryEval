@@ -85,11 +85,11 @@ export async function POST(req: Request) {
     status: "generating",
   });
 
-  // Kick off Claude generation (don't await — let client poll)
+  // Await Claude generation (must complete before Vercel kills the function)
   const validContexts = firmContexts as { firm: NonNullable<(typeof firmContexts)[0]["firm"]>; report: string | null }[];
-  generateComparison(slug, validContexts).catch(console.error);
+  await generateComparison(slug, validContexts);
 
-  return NextResponse.json({ redirect: slug, generating: true });
+  return NextResponse.json({ redirect: slug });
 }
 
 async function generateComparison(

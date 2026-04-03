@@ -29,20 +29,18 @@ export function FirmPicker({ firms }: { firms: FirmOption[] }) {
     if (selected.length !== 3 || loading) return;
     setLoading(true);
 
-    try {
-      const res = await fetch("/api/comparisons", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firmSlugs: selected }),
-      });
-      const data = await res.json();
-      if (data.redirect) {
-        router.push(`/custom-compare/${data.redirect}`);
-      }
-    } catch (err) {
-      console.error(err);
-      setLoading(false);
-    }
+    // Compute slug client-side and redirect immediately to progress page
+    const slug = [...selected].sort().join("_");
+
+    // Fire off the POST (don't await — let the comparison page handle polling)
+    fetch("/api/comparisons", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firmSlugs: selected }),
+    }).catch(console.error);
+
+    // Redirect to comparison page which shows progress UI
+    router.push(`/custom-compare/${slug}`);
   };
 
   const groups = [1, 2, 3, 4];

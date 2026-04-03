@@ -90,9 +90,17 @@ export default function ComparisonPage() {
   }
 
   if (!comparison) {
+    // Row may not exist yet (POST still creating it) — show progress and keep polling
+    const firmNames = slug.split("_").join(", ");
     return (
       <div className="p-6 max-w-4xl mx-auto">
-        <p className="text-muted-foreground">Comparison not found.</p>
+        <Link
+          href="/custom-compare"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6"
+        >
+          <ArrowLeft size={14} /> Back
+        </Link>
+        <ProgressView firmNames={firmNames} onComplete={fetchComparison} />
       </div>
     );
   }
