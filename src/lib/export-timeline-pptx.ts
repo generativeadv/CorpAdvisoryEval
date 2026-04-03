@@ -85,6 +85,21 @@ export async function generateTimelinePptx(
 
   const firmCount = new Set(events.map((e) => e.firm)).size;
 
+  // Quant insights
+  const firmActivityCounts = new Map<string, number>();
+  for (const e of events) {
+    firmActivityCounts.set(e.firm, (firmActivityCounts.get(e.firm) || 0) + 1);
+  }
+  const topFirms = [...firmActivityCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
+  const avgPerQuarter = allQuarters.length > 0
+    ? Math.round((events.length / allQuarters.length) * 10) / 10
+    : 0;
+  const avgPerFirmPerQ = firmCount > 0 && allQuarters.length > 0
+    ? Math.round((events.length / firmCount / allQuarters.length) * 10) / 10
+    : 0;
+  const tlCount = events.filter((e) => e.type === "Thought Leadership").length;
+  const tlPct = events.length > 0 ? Math.round((tlCount / events.length) * 100) : 0;
+
   const pptx = new PptxGenJS();
   pptx.layout = "LAYOUT_WIDE";
   pptx.author = "Advisory AI Eval";
@@ -104,6 +119,18 @@ export async function generateTimelinePptx(
       fontSize: 18, color: DARK, fontFace: "Calibri", bold: true,
     }
   );
+
+  // Insight strip below title
+  const insightItems = [
+    `${avgPerQuarter} avg events/quarter`,
+    `${avgPerFirmPerQ} avg/firm/quarter`,
+    `${tlPct}% thought leadership`,
+    `Most active: ${topFirms.map(([f, c]) => `${f} (${c})`).join(", ")}`,
+  ];
+  slide1.addText(insightItems.join("  ·  "), {
+    x: 0.6, y: 0.95, w: 12, h: 0.25,
+    fontSize: 9, color: LIGHT_GRAY, fontFace: "Calibri",
+  });
 
   // Build chart data series — one series per activity type
   const chartData: PptxGenJS.OptsChartData[] = types.map((t) => ({

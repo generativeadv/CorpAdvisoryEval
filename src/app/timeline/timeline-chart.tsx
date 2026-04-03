@@ -80,7 +80,7 @@ export function TimelineChart({ events }: { events: TimelineEvent[] }) {
     }
   };
 
-  const { chartData, allQuarters, typeCounts, eventsByQuarter } = useMemo(() => {
+  const { chartData, allQuarters, typeCounts, eventsByQuarter, insights } = useMemo(() => {
     // Normalize types
     const normalized = events.map((e) => ({
       ...e,
@@ -117,7 +117,32 @@ export function TimelineChart({ events }: { events: TimelineEvent[] }) {
       eventsByQuarter[e.quarter].push(e);
     }
 
-    return { chartData: data, allQuarters, typeCounts, eventsByQuarter };
+    // Quant insights
+    const firmCounts = new Map<string, number>();
+    for (const e of normalized) {
+      firmCounts.set(e.firm, (firmCounts.get(e.firm) || 0) + 1);
+    }
+    const topFirms = [...firmCounts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3);
+
+    const avgPerQuarter = allQuarters.length > 0
+      ? Math.round((normalized.length / allQuarters.length) * 10) / 10
+      : 0;
+
+    const firmCount = firmCounts.size;
+    const avgPerFirmPerQuarter = firmCount > 0 && allQuarters.length > 0
+      ? Math.round((normalized.length / firmCount / allQuarters.length) * 10) / 10
+      : 0;
+
+    const tlCount = normalized.filter((e) => e.type === "Thought Leadership").length;
+    const tlPct = normalized.length > 0
+      ? Math.round((tlCount / normalized.length) * 100)
+      : 0;
+
+    const insights = { avgPerQuarter, avgPerFirmPerQuarter, tlPct, topFirms, firmCount };
+
+    return { chartData: data, allQuarters, typeCounts, eventsByQuarter, insights };
   }, [events]);
 
   const activeTypes = selectedType
@@ -176,6 +201,31 @@ export function TimelineChart({ events }: { events: TimelineEvent[] }) {
           <FileDown size={16} />
           {downloading ? "Generating..." : "Download .pptx"}
         </button>
+      </div>
+
+      {/* Quant Insights */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="border rounded-lg p-3">
+          <p className="text-2xl font-bold">{insights.avgPerQuarter}</p>
+          <p className="text-xs text-muted-foreground">Avg events per quarter</p>
+        </div>
+        <div className="border rounded-lg p-3">
+          <p className="text-2xl font-bold">{insights.avgPerFirmPerQuarter}</p>
+          <p className="text-xs text-muted-foreground">Avg per firm per quarter</p>
+        </div>
+        <div className="border rounded-lg p-3">
+          <p className="text-2xl font-bold">{insights.tlPct}%</p>
+          <p className="text-xs text-muted-foreground">Thought leadership (of all activity)</p>
+        </div>
+        <div className="border rounded-lg p-3">
+          <p className="text-xs text-muted-foreground mb-1">Most active firms</p>
+          {insights.topFirms.map(([firm, count]) => (
+            <p key={firm} className="text-sm">
+              <span className="font-semibold">{firm}</span>{" "}
+              <span className="text-muted-foreground">({count})</span>
+            </p>
+          ))}
+        </div>
       </div>
 
       {/* Chart */}
